@@ -1,0 +1,8 @@
+--leak-check=full
+--show-reachable=yes
+--leak-resolution=high
+--track-origins=yes
+--show-leak-kinds=all
+--suppressions=valgrind_filter.supp
+--gen-suppressions=all
+-s
