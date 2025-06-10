@@ -1,0 +1,8 @@
+bin/
+obj/
+.*
+!.gitignore
+!.valgrindrc
+*.o
+*.a
+a.out
