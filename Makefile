@@ -6,7 +6,7 @@
 #    By: lluque <lluque@student.42malaga.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/15 11:23:07 by lluque            #+#    #+#              #
-#    Updated: 2025/06/10 09:37:59 by lluque           ###   ########.fr        #
+#    Updated: 2025/06/11 22:32:00 by lluque           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -160,10 +160,17 @@ CC_FLAGS = -Wall -Werror -Wextra
 # List of mandatory version header file names
 # NOTE: Only to be used to force recompiling if modified
 INCLUDES = $(INC_DIR)piano_trainer.h \
+		   $(INC_DIR)pt_files.h \
+		   $(INC_DIR)pt_midi.h \
 
 
 # List of source code file names with path relative to SRC_DIR
 SOURCES = main.c \
+		  pt_create_pt.c \
+		  pt_destroy_pt.c \
+		  files/pt_files_get_midi_dev_file.c \
+		  files/pt_files_try_dir_items.c \
+		  midi/pt_midi_listener.c \
 
 # List of bonus version header file names
 # NOTE: Only to be used to force recompiling if modified

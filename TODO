@@ -1,6 +1,14 @@
 ################################################################################
 #### FOR NEXT COMMIT DESCRIPTION ###############################################
 
+Refactorization.
+
+Signal handling for SIGINT.
+
+Non-block for the device file.
+Random.
+
+
 ADD Receiving and interpreting note on/off midi messages
 
 This dirty version is able to locate the device file for MIDI
@@ -23,18 +31,12 @@ piano.
 ################################################################################
 ### TODO's #####################################################################
 
-* The midi interface for at least note on and off messages.
-* Conversions from key number to:
-	* Absolute note (do2).
-	* Relative note (do).
-	* Anglo-saxon vs latin note naming.
+* A timer thread that can be reset/cancelled/restarted from another
+thread (e.g. the midi listener
 * The midi messages treatment should be more robust for the
 state machine of the interpreter does not remain in an unrecoveranle
 state if a message with a number of data bytes different than 2
 is received.
-* Try the O_ASYNC option for open() to migrate to a multi-threaded
-program.
-* Catch ^C.
 * Keep researching the alternative aproaches using the ALSA library
 (sequencer, midiraw).
 
@@ -43,6 +45,17 @@ program.
 
 ################################################################################
 ### DONE TODO's ################################################################
+
+* Use O_NONBLOCK for the device file.
+* The midi interface for at least note on and off messages.
+* Conversions from key number to:
+	* Absolute note (do2).
+	* Relative note (do).
+	* Anglo-saxon vs latin note naming.
+* Try the O_ASYNC option for open() to migrate to a multi-threaded
+program.
+	* Apparently it's not supported by the Alsa driver.
+* Catch ^C.
 
 
 ################################################################################
