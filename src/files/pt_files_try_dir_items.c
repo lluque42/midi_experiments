@@ -6,7 +6,7 @@
 /*   By: lluque <lluque@student.42malaga.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 12:37:35 by lluque            #+#    #+#             */
-/*   Updated: 2025/06/11 12:38:52 by lluque           ###   ########.fr       */
+/*   Updated: 2025/06/12 11:48:17 by lluque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ char	*pt_files_try_dir_items(DIR *dev_snd, char *try_dir)
 	struct dirent	*current_dir_entry;
 	char			*midi_dev_file;
 
+	midi_dev_file = NULL;
 	current_dir_entry = readdir(dev_snd);
 	for (current_dir_entry = readdir(dev_snd);
 			current_dir_entry != NULL; current_dir_entry = readdir(dev_snd))

@@ -6,7 +6,7 @@
 /*   By: lluque <lluque@student.42malaga.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 20:21:57 by lluque            #+#    #+#             */
-/*   Updated: 2025/06/11 23:11:19 by lluque           ###   ########.fr       */
+/*   Updated: 2025/06/13 12:54:15 by lluque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,15 +62,19 @@ int	main(int argc, char **argv)
 
 	if (argc > 1)
 		printf("argv[0] = %s\n", argv[0]);
+	
+	pt = pt_create_pt();
+	if (pt == NULL)
+		return (EXIT_FAILURE);
 
 	if (signal(SIGINT, &pt_sig_hndlr) == SIG_ERR)
 	{
 		perror("Couldnt register signal handler for SIGINT");
 		return (EXIT_FAILURE);
 	}
-	pt = pt_create_pt();
-	if (pt == NULL)
-		exit(EXIT_FAILURE);
+
+	if (!pt_ui_init(pt))
+		return (pt_destroy_pt(pt), EXIT_FAILURE);
 
 	pt->midi_dev_file = pt_files_get_midi_dev_file();
 	if (pt->midi_dev_file == NULL)
@@ -78,13 +82,16 @@ int	main(int argc, char **argv)
 		dprintf(STDERR_FILENO, "No midi device file was found, ");
 		dprintf(STDERR_FILENO, "make sure your keyboard is connected ");
 		dprintf(STDERR_FILENO, "and tied to a driver\n");
-		return (EXIT_FAILURE);
+		return (pt_destroy_pt(pt), pt_ui_terminate(pt), EXIT_FAILURE);
 	}
 	pt->dev_fd = open(pt->midi_dev_file, O_RDONLY | O_NONBLOCK);
 	if (pt->dev_fd == -1)
-		return (perror("opening device file"), EXIT_FAILURE);
+		return (pt_destroy_pt(pt), pt_ui_terminate(pt),
+				perror("opening device file"), EXIT_FAILURE);
 	if (pthread_create(&pt->listener_thread, NULL, &pt_midi_listener, pt))
-		return (perror("creating listener_thread"), EXIT_FAILURE);
+		return (pt_destroy_pt(pt), pt_ui_terminate(pt), close(pt->dev_fd),
+				perror("creating listener_thread"), EXIT_FAILURE);
+
 	while (1)
 	{
 		pthread_mutex_lock(&pt->flags_mx);
@@ -107,8 +114,10 @@ int	main(int argc, char **argv)
 		pt->last_note = 0;
 		pthread_mutex_unlock(&pt->note_mx);
 	}
+
 	pthread_join(pt->listener_thread, NULL);
 	close(pt->dev_fd);
+	pt_ui_terminate(pt);
 	pt_destroy_pt(pt);
 	return (EXIT_SUCCESS);
 }

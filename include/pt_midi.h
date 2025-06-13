@@ -6,9 +6,14 @@
 /*   By: lluque <lluque@student.42malaga.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 20:20:48 by lluque            #+#    #+#             */
-/*   Updated: 2025/06/11 23:08:41 by lluque           ###   ########.fr       */
+/*   Updated: 2025/06/12 11:31:45 by lluque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+/**
+ * @file pt_midi.h
+ * TODO.
+ */
 
 #ifndef PT_MIDI_H
 # define PT_MIDI_H
@@ -56,6 +61,8 @@ typedef enum e_midi_receiver_state
 }	t_midi_receiver_state;
 
 /*
+ * This link is (I think, because for the official one you have to pay or it's
+ * down) the midi specificiations:
 http://midi.teragonaudio.com/tech/midispec.htm
 The first data is the note number. There are 128 possible notes on a MIDI
 device, numbered 0 to 127 (where Middle C is note number 60).

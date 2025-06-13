@@ -6,7 +6,7 @@
 #    By: lluque <lluque@student.42malaga.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/15 11:23:07 by lluque            #+#    #+#              #
-#    Updated: 2025/06/11 22:32:00 by lluque           ###   ########.fr        #
+#    Updated: 2025/06/12 11:56:15 by lluque           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,7 +60,7 @@ LIBFT_BIN = $(LIBFT_BIN_DIR)libft.a
 # Additional external (already-compiled) libraries for linking to the
 # project's binaries (mandatory, bonus and tester).
 # 
-EXT_LIBS = -lreadline
+EXT_LIBS = -ltermcap
 
 ################################################################################
 #
@@ -160,8 +160,10 @@ CC_FLAGS = -Wall -Werror -Wextra
 # List of mandatory version header file names
 # NOTE: Only to be used to force recompiling if modified
 INCLUDES = $(INC_DIR)piano_trainer.h \
+		   $(INC_DIR)pt_type.h \
 		   $(INC_DIR)pt_files.h \
 		   $(INC_DIR)pt_midi.h \
+		   $(INC_DIR)pt_ui.h \
 
 
 # List of source code file names with path relative to SRC_DIR
@@ -171,6 +173,7 @@ SOURCES = main.c \
 		  files/pt_files_get_midi_dev_file.c \
 		  files/pt_files_try_dir_items.c \
 		  midi/pt_midi_listener.c \
+		  ui/pt_ui_init.c \
 
 # List of bonus version header file names
 # NOTE: Only to be used to force recompiling if modified
@@ -213,10 +216,10 @@ DOXYFILE = Doxyfile
 DOC_DIR = ./doc/
 
 # Project name for documentation purposes
-DOX_PROJECT_NAME = Beginner's piano trainer
+DOX_PROJECT_NAME = piano_trainer
 
 # Project brief description (one line)
-DOX_PROJECT_BRIEF = Beginner's piano trainer
+DOX_PROJECT_BRIEF = piano_trainer
 
 # Content for documentation main page (detailed description there)
 DOX_MAIN_PAGE = ./README.md

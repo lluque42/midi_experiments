@@ -1,29 +1,39 @@
 ################################################################################
 #### FOR NEXT COMMIT DESCRIPTION ###############################################
 
-Refactorization.
+ADD terminal capabilities features
 
-Signal handling for SIGINT.
+User interface experiments just to play with the following functions
+(that I need in another project):
+	From unistd.h or C standard library"
+		isatty
+		ttyname
+		tcsetattr
+		tcgetattr
+		ttyslot
+		ioctl
+	From termcap library:
+		tgetent
+		tgetflag
+		tgetnum
+		tgetstr
+		tgoto
+		tputs
 
-Non-block for the device file.
-Random.
+Controlled initialization and termination of the user's interface.
+The ECHO capabilities of the terminal is disabled on init.
+All three standard terminal-related file descriptors are checked
+and the program only launches if all of them are a tty.
+The original configuration of the terminal is restored on termination.
+The screen is cleared in the beginning and before terminating the
+program.
 
+First doxyfile aproximation (the header files headers and
+little more).
 
-ADD Receiving and interpreting note on/off midi messages
+Re-organization of the header files to avoid forward declarations
+for the t_pt type (and probably more to come in the future).
 
-This dirty version is able to locate the device file for MIDI
-devices (for ALSA driver) though some hints were included to
-support older drivers (e.g. OSS). It can open the device
-file and listen to the MIDI messages sent by the keyboard.
-So far it supports two types of messages: channel/voice messages:
-note on (key is pressed) and note off (key is released).
-The program is able to parse these two types of messages and
-to decode the key id into a latin note naming style.
-
-This is a draft to proof the concept. The next steps will
-probably be to clean it up, re-factor it and probably to advance
-into a basic trainer so I can begin to use it to practice my
-piano.
 
 ################################################################################
 ################################################################################
@@ -61,14 +71,49 @@ program.
 ################################################################################
 ################################################################################
 
+No compiling, valgrind, norminette or doxygen unexpected errors
+shown.
+
+Documentation updated.
+
 
 
 
 ################################################################################
 #### OLD COMMIT DESCRIPTIONS ###################################################
 
-No compiling, valgrind, norminette or doxygen unexpected errors
-shown.
+Refactorized, multithread, working note training
 
-Documentation updated.
+The midi interpreter now runs as an independent thread
+which made possible to implement the first excercise: play the note.
+
+A random note generator was added.
+
+Now the SIGINT is catched for a controlled exit using an
+exit pending flag.
+
+The device file is now opened with O_NONBLOCK to allow a faster
+termination of the MIDI listener thread.
+
+No memory leaks detected. A much more cleaner code.
+
+
+
+
+ADD Receiving and interpreting note on/off midi messages
+
+This dirty version is able to locate the device file for MIDI
+devices (for ALSA driver) though some hints were included to
+support older drivers (e.g. OSS). It can open the device
+file and listen to the MIDI messages sent by the keyboard.
+So far it supports two types of messages: channel/voice messages:
+note on (key is pressed) and note off (key is released).
+The program is able to parse these two types of messages and
+to decode the key id into a latin note naming style.
+
+This is a draft to proof the concept. The next steps will
+probably be to clean it up, re-factor it and probably to advance
+into a basic trainer so I can begin to use it to practice my
+piano.
+
 

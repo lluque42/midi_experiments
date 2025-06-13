@@ -30,3 +30,28 @@
    ...
    fun:add_history
 }
+{
+   <freaking termcap tgetent() won't free>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   ...
+   fun:tgetent_sp
+   ...
+}
+{
+   <tgetnum_sp...>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   ...
+   fun:tgetnum_sp
+   ...
+}
+{
+   <tgetstr_sp...>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   ...
+   fun:tgetstr_sp
+   ...
+}
+

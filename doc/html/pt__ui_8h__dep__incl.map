@@ -1,0 +1,12 @@
+<map id="include/pt_ui.h" name="include/pt_ui.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="91,5,209,31"/>
+<area shape="rect" id="Node000002" href="$piano__trainer_8h.html" title=" " alt="" coords="65,79,235,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="144,44,146,78,140,79,139,45"/>
+<area shape="poly" id="edge6_Node000002_Node000001" title=" " alt="" coords="156,65,154,31,160,31,161,65"/>
+<area shape="rect" id="Node000003" href="$pt__files_8h.html" title=" " alt="" coords="5,152,137,177"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="122,114,79,154,76,150,118,111"/>
+<area shape="rect" id="Node000004" href="$pt__midi_8h.html" title=" " alt="" coords="161,152,296,177"/>
+<area shape="poly" id="edge4_Node000002_Node000004" title=" " alt="" coords="167,112,211,150,207,154,164,116"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="100,141,142,102,146,106,104,145"/>
+<area shape="poly" id="edge5_Node000004_Node000002" title=" " alt="" coords="212,144,168,106,171,102,215,140"/>
+</map>

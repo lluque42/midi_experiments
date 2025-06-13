@@ -1,0 +1,14 @@
+<map id="include/pt_type.h" name="include/pt_type.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="161,5,296,31"/>
+<area shape="rect" id="Node000002" href="$piano__trainer_8h.html" title=" " alt="" coords="143,79,314,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="231,44,231,79,226,79,226,44"/>
+<area shape="rect" id="Node000003" href="$pt__files_8h.html" title=" " alt="" coords="5,152,137,177"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="185,112,91,154,89,149,183,107"/>
+<area shape="rect" id="Node000004" href="$pt__midi_8h.html" title=" " alt="" coords="161,152,296,177"/>
+<area shape="poly" id="edge4_Node000002_Node000004" title=" " alt="" coords="223,118,224,152,219,152,217,118"/>
+<area shape="rect" id="Node000005" href="$pt__ui_8h.html" title=" " alt="" coords="321,152,438,177"/>
+<area shape="poly" id="edge6_Node000002_Node000005" title=" " alt="" coords="259,108,349,149,347,154,257,113"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="115,144,209,102,211,106,117,149"/>
+<area shape="poly" id="edge5_Node000004_Node000002" title=" " alt="" coords="235,139,233,104,238,104,240,138"/>
+<area shape="poly" id="edge7_Node000005_Node000002" title=" " alt="" coords="348,148,259,106,261,102,351,143"/>
+</map>
