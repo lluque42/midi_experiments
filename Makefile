@@ -6,7 +6,7 @@
 #    By: lluque <lluque@student.42malaga.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/15 11:23:07 by lluque            #+#    #+#              #
-#    Updated: 2025/06/15 11:14:23 by lluque           ###   ########.fr        #
+#    Updated: 2025/06/16 00:27:02 by lluque           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -167,6 +167,9 @@ INCLUDES = $(INC_DIR)piano_trainer.h \
 		   $(INC_DIR)pt_timer.h \
 		   $(INC_DIR)pt_sig.h \
 		   $(INC_DIR)pt_ascii_art.h \
+		   $(INC_DIR)pt_games.h \
+		   $(INC_DIR)pt_music.h \
+		   $(INC_DIR)pt_guess_note.h \
 
 
 # List of source code file names with path relative to SRC_DIR
@@ -180,6 +183,7 @@ SOURCES = main.c \
 		  ui/pt_ui_init.c \
 		  ui/pt_ui_terminate.c \
 		  ui/pt_ui_check_if_tty.c \
+		  ui/pt_ui_clear_screen.c \
 		  timer/pt_tmr_create.c \
 		  timer/pt_tmr_counter.c \
 		  timer/pt_tmr_start.c \
@@ -189,6 +193,13 @@ SOURCES = main.c \
 		  art/pt_art_load_art.c \
 		  art/pt_art_get_art_size.c \
 		  art/pt_art_print_dump.c \
+		  art/pt_art_print_in_columns.c \
+		  art/pt_art_init.c \
+		  art/pt_art_destroy_art.c \
+		  games/pt_gm_get_rand_nbr.c \
+		  games/guess_note/pt_gm_guess_note.c \
+		  music/pt_mu_note_print.c \
+		  music/pt_mu_create_note_from_midi.c \
 
 # Where all terminal experiments code come to die
 # ui/pt_ui_experiments.c \

@@ -6,7 +6,7 @@
 /*   By: lluque <lluque@student.42malaga.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 23:04:41 by lluque            #+#    #+#             */
-/*   Updated: 2025/06/13 23:05:43 by lluque           ###   ########.fr       */
+/*   Updated: 2025/06/16 00:23:47 by lluque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ void	pt_sig_hndlr(int signal)
 		printf ("\nPlease don't go\n");
 		pthread_mutex_lock(&pt->flags_mx);
 		pt->exit_pending = 1;
-		pt_tmr_disable(pt->question_tmr);
 		pthread_mutex_unlock(&pt->flags_mx);
 	}
 	else if (signal == SIGWINCH)

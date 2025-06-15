@@ -6,7 +6,7 @@
 /*   By: lluque <lluque@student.42malaga.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 20:20:48 by lluque            #+#    #+#             */
-/*   Updated: 2025/06/15 12:15:35 by lluque           ###   ########.fr       */
+/*   Updated: 2025/06/15 22:00:53 by lluque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,14 @@
 # include <math.h>		// ceil()
 # include <stdarg.h>	// variadic functions
 # include "pt_type.h"
+# include "pt_music.h"
 # include "pt_files.h"
 # include "pt_midi.h"
 # include "pt_ui.h"
 # include "pt_timer.h"
 # include "pt_sig.h"
 # include "pt_ascii_art.h"
+# include "pt_games.h"
 # include "libft.h"
 
 #endif

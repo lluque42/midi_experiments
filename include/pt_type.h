@@ -6,7 +6,7 @@
 /*   By: lluque <lluque@student.42malaga.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 11:14:27 by lluque            #+#    #+#             */
-/*   Updated: 2025/06/14 22:40:42 by lluque           ###   ########.fr       */
+/*   Updated: 2025/06/15 21:49:45 by lluque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,9 @@
 # define PT_TYPE_H
 
 // Forward declaration
-typedef struct s_tmr	t_tmr;
-typedef struct s_pt_ascii_art	t_pt_ascii_art;
+//typedef struct s_tmr			t_tmr;
+//typedef struct s_pt_ascii_art	t_pt_ascii_art;
+//typedef struct s_pt_gn			t_pt_gn;
 
 /**
  * @struct s_pt
@@ -86,6 +87,7 @@ typedef struct s_pt
 	char					*env_termtype;
 	//char					term_buffer[2048];	// For UNIX, didn't free ok
 	char					*term_buffer;
+	struct winsize			min_ws;	// Calculated from the logo ascii art
 	struct winsize			ws;
 	pthread_mutex_t			ws_mx;
 	pthread_mutex_t			screen_mx;
@@ -95,6 +97,7 @@ typedef struct s_pt
 	struct s_pt_ascii_art	*lat_notes;
 	struct s_pt_ascii_art	*ang_notes;
 	struct s_pt_ascii_art	*numbers;
+	struct s_pt_gn  		*gn;
 }	t_pt;
 /**
  * @typedef t_pt

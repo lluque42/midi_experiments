@@ -6,7 +6,7 @@
 /*   By: lluque <lluque@student.42malaga.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 10:59:58 by lluque            #+#    #+#             */
-/*   Updated: 2025/06/14 20:14:48 by lluque           ###   ########.fr       */
+/*   Updated: 2025/06/15 23:12:43 by lluque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,11 @@ int	pt_ui_init(t_pt *pt)
 	// It uses Kernel-level or OS interface (ioctl() is a system call).
 	pthread_mutex_lock(&pt->ws_mx);
 	if (ioctl(STDOUT_FILENO, TIOCGWINSZ, &pt->ws) == -1)
+		return (pthread_mutex_unlock(&pt->ws_mx),
+				perror("ioctl for terminal size"), 0);
+//	printf("pt->ws.ws_row = %d pt->min_ws.ws_row = %d", pt->ws.ws_row, pt->min_ws.ws_row);
+//	printf("pt->ws.ws_col = %d pt->min_ws.ws_col = %d", pt->ws.ws_col, pt->min_ws.ws_col);
+	if (pt->ws.ws_row < pt->min_ws.ws_row || pt->ws.ws_col < pt->min_ws.ws_col)
 		return (pthread_mutex_unlock(&pt->ws_mx),
 				perror("ioctl for terminal size"), 0);
 	pthread_mutex_unlock(&pt->ws_mx);
@@ -90,8 +95,9 @@ int	pt_ui_init(t_pt *pt)
 	if (status == 0)
 		return (pt_ui_terminate(pt),
 				perror("Couldn't tgetent(), TERM not defined"), 0);
-
-	// Clear the screen using "cl" terminal capability obtained from termcap
-	//printf("%s", tgetstr("cl", NULL));
+	pt_ui_clear_screen(pt);
+	usleep(200);
+	pt_art_print_in_columns(pt, pt->ws, 1,
+							pt->logo, 0);
 	return (1);
 }

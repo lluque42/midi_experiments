@@ -1,12 +1,21 @@
 ################################################################################
 #### FOR NEXT COMMIT DESCRIPTION ###############################################
 
-ADD Windows resize detection
+FIX Refactorization & clean-up. Music collection
 
-The program uses the signal SIGWINCH and ioctl() to keep track
-of the terminal window size (following the termcap manual guidelines).
+Improved the mutex protection for the screen.
+More refactorization and cleaning.
+Memory leaks fixed.
 
-ASCII art for numbers, note names, alterations and the program logo.
+A music collection was added to group everything to do with notation
+interval calculations, etc. It's kind of a library for basic universal
+music theory stuff.
+
+
+
+
+
+
 
 More user interface experiments just to play with the following
 functions I need for another project:
@@ -32,6 +41,8 @@ functions I need for another project:
 ################################################################################
 ### TODO's #####################################################################
 
+* Re-design the midi listener so that each game registers its handlers
+for note_on, note_off, etc.
 * The render function pt_ui_render()
 * Adopt the same error strategy as minishell.
 * A timer thread that can be reset/cancelled/restarted from another
@@ -50,6 +61,7 @@ is received.
 ################################################################################
 ### DONE TODO's ################################################################
 
+* Destroy art type, include in pt destroyer
 * Use O_NONBLOCK for the device file.
 * The midi interface for at least note on and off messages.
 * Conversions from key number to:
@@ -75,6 +87,20 @@ Documentation updated.
 
 ################################################################################
 #### OLD COMMIT DESCRIPTIONS ###################################################
+
+ADD Windows resize detection
+
+The program uses the signal SIGWINCH and ioctl() to keep track
+of the terminal window size (following the termcap manual guidelines).
+
+ASCII art for numbers, note names, alterations and the program logo.
+
+
+
+
+
+
+
 
 ADD terminal capabilities features
 

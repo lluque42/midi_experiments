@@ -1,29 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pt_destroy_pt.c                                    :+:      :+:    :+:   */
+/*   pt_art_destroy_art.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lluque <lluque@student.42malaga.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/11 21:55:42 by lluque            #+#    #+#             */
-/*   Updated: 2025/06/16 00:29:15 by lluque           ###   ########.fr       */
+/*   Created: 2025/06/16 00:25:28 by lluque            #+#    #+#             */
+/*   Updated: 2025/06/16 00:26:30 by lluque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "piano_trainer.h"
 
-void	pt_destroy_pt(t_pt *pt)
+void	pt_art_destroy_art(t_pt_ascii_art *art)
 {
-	free(pt->midi_dev_file);
-	pthread_mutex_destroy(&pt->flags_mx);
-	pthread_mutex_destroy(&pt->note_mx);
-	pthread_mutex_destroy(&pt->ws_mx);
-	pthread_mutex_destroy(&pt->screen_mx);
-	free(pt->env_termtype);
-	pt_art_destroy_art(pt->logo);
-	pt_art_destroy_art(pt->alts);
-	pt_art_destroy_art(pt->lat_notes);
-	pt_art_destroy_art(pt->ang_notes);
-	pt_art_destroy_art(pt->numbers);
-	free(pt);
+	free(art->data);
+	free(art);
 }

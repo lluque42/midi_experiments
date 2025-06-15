@@ -6,7 +6,7 @@
 /*   By: lluque <lluque@student.42malaga.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 19:49:21 by lluque            #+#    #+#             */
-/*   Updated: 2025/06/15 15:37:43 by lluque           ###   ########.fr       */
+/*   Updated: 2025/06/15 20:06:55 by lluque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@ t_pt_ascii_art	*pt_art_load_art(char *path, int ver_el, int hor_el)
 	art->ver_el = ver_el;
 	art->hor_el = hor_el;
 	art->size = pt_art_get_art_size(path);
-	printf("Art path '%s'\n\tRows = %d cols = %d\n",
-			path, art->size.ws_row, art->size.ws_col);
 	if (art->size.ws_row == 0 || art->size.ws_col == 0)
 		return (free(art), dprintf(STDERR_FILENO, "invalid size in art"), NULL);
 	art->data = malloc(sizeof(char) * art->size.ws_row * (art->size.ws_col + 1));
@@ -44,6 +42,5 @@ t_pt_ascii_art	*pt_art_load_art(char *path, int ver_el, int hor_el)
 		index += art->size.ws_col;
 		line = ft_gnl(fd);
 	}
-	pt_art_print_dump(art);
 	return (art);
 }

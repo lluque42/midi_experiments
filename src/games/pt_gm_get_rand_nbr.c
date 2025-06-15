@@ -1,29 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pt_art_print_dump.c                                :+:      :+:    :+:   */
+/*   pt_gm_get_rand_nbr.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lluque <lluque@student.42malaga.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/15 11:11:38 by lluque            #+#    #+#             */
-/*   Updated: 2025/06/15 20:07:46 by lluque           ###   ########.fr       */
+/*   Created: 2025/06/15 20:14:09 by lluque            #+#    #+#             */
+/*   Updated: 2025/06/15 20:14:58 by lluque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "piano_trainer.h"
 
-void	pt_art_print_dump(t_pt *pt, t_pt_ascii_art  *art)
+// From 0 to max
+int	pt_gm_get_rand_nbr(int max, unsigned int *seed)
 {
-	int	index;
+	struct timeval	timestamp;
+	int				nbr;
+	int				unbiased_limit;
 
-	index = 0;
-	while (index < art->size.ws_row)
+	if (*seed == 0)
 	{
-		pthread_mutex_lock(&pt->screen_mx);
-		write(STDIN_FILENO,
-				art->data + index * art->size.ws_col, art->size.ws_col);
-		write(STDIN_FILENO, "\n", 1);
-		pthread_mutex_unlock(&pt->screen_mx);
-		index++;
+		if (gettimeofday(&timestamp, NULL) == -1)
+			return (perror("asking for time"), -1);
+		*seed = timestamp.tv_sec;
+		srand(*seed);
 	}
+	unbiased_limit = RAND_MAX - (RAND_MAX % (max + 1));
+	nbr = RAND_MAX;
+	while (nbr >= unbiased_limit)
+		nbr = rand();
+	nbr = nbr % (max + 1);
+	return (nbr);
 }

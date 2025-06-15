@@ -6,7 +6,7 @@
 /*   By: lluque <lluque@student.42malaga.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 13:29:27 by lluque            #+#    #+#             */
-/*   Updated: 2025/06/15 12:32:14 by lluque           ###   ########.fr       */
+/*   Updated: 2025/06/16 00:26:48 by lluque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,9 +74,14 @@ t_pt_ascii_art	*pt_art_load_art(char *path, int ver_el, int hor_el);
 
 struct winsize	pt_art_get_art_size(char *path);
 
-void			pt_art_print_dump(t_pt_ascii_art  *art);
+void			pt_art_print_dump(t_pt *pt, t_pt_ascii_art  *art);
 
-int				pt_art_print_in_columns(struct winsize max_size, int cols, ...);
+int				pt_art_print_in_columns(t_pt *pt, struct winsize max_size,
+											int cols, ...);
+
+int				pt_art_init(t_pt *pt);
+
+void			pt_art_destroy_art(t_pt_ascii_art *art);
 /*
 
 TRY                 YOUR GUESS         TIME LEFT
