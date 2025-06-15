@@ -6,7 +6,7 @@
 /*   By: lluque <lluque@student.42malaga.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 20:20:48 by lluque            #+#    #+#             */
-/*   Updated: 2025/06/12 11:31:45 by lluque           ###   ########.fr       */
+/*   Updated: 2025/06/13 22:27:42 by lluque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,5 +77,7 @@ it does not say of which octave.
 */
 
 void	*pt_midi_listener(void *pt_control_struct);
+
+int		pt_midi_try_connect(t_pt *pt);
 
 #endif

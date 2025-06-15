@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pt_ui.h                                            :+:      :+:    :+:   */
+/*   pt_sig_init.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lluque <lluque@student.42malaga.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/12 11:02:02 by lluque            #+#    #+#             */
-/*   Updated: 2025/06/14 21:37:42 by lluque           ###   ########.fr       */
+/*   Created: 2025/06/13 22:59:04 by lluque            #+#    #+#             */
+/*   Updated: 2025/06/13 23:03:25 by lluque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/**
- * @file pt_ui.h
- * TODO.
- */
+#include "piano_trainer.h"
 
-#ifndef PT_UI_H
-# define PT_UI_H
+int	pt_sig_init(void)
+{
+	if (signal(SIGINT, &pt_sig_hndlr) == SIG_ERR)
+	{
+		perror("Couldnt register signal handler for SIGINT");
+		return (0);
+	}
 
-# include "piano_trainer.h"
-
-int				pt_ui_init(t_pt *pt);
-
-int				pt_ui_check_if_tty(void);
-
-int 			pt_ui_terminate(t_pt *pt);
-
-#endif
+	if (signal(SIGWINCH, &pt_sig_hndlr) == SIG_ERR)
+	{
+		perror("Couldnt register signal handler for SIGWINCH");
+		return (0);
+	}
+	return (1);
+}

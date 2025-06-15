@@ -6,7 +6,7 @@
 /*   By: lluque <lluque@student.42malaga.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 20:20:48 by lluque            #+#    #+#             */
-/*   Updated: 2025/06/13 12:58:35 by lluque           ###   ########.fr       */
+/*   Updated: 2025/06/15 12:15:35 by lluque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,15 @@
 # include <termcap.h>	// UI terminal related functions
 # include <termios.h>	// UI terminal related functions
 # include <sys/ioctl.h>	// UI terminal related functions ioctl()
+# include <math.h>		// ceil()
+# include <stdarg.h>	// variadic functions
 # include "pt_type.h"
 # include "pt_files.h"
 # include "pt_midi.h"
 # include "pt_ui.h"
+# include "pt_timer.h"
+# include "pt_sig.h"
+# include "pt_ascii_art.h"
 # include "libft.h"
 
 #endif

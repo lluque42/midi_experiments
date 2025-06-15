@@ -1,10 +1,15 @@
 ################################################################################
 #### FOR NEXT COMMIT DESCRIPTION ###############################################
 
-ADD terminal capabilities features
+ADD Windows resize detection
 
-User interface experiments just to play with the following functions
-(that I need in another project):
+The program uses the signal SIGWINCH and ioctl() to keep track
+of the terminal window size (following the termcap manual guidelines).
+
+ASCII art for numbers, note names, alterations and the program logo.
+
+More user interface experiments just to play with the following
+functions I need for another project:
 	From unistd.h or C standard library"
 		isatty
 		ttyname
@@ -20,20 +25,6 @@ User interface experiments just to play with the following functions
 		tgoto
 		tputs
 
-Controlled initialization and termination of the user's interface.
-The ECHO capabilities of the terminal is disabled on init.
-All three standard terminal-related file descriptors are checked
-and the program only launches if all of them are a tty.
-The original configuration of the terminal is restored on termination.
-The screen is cleared in the beginning and before terminating the
-program.
-
-First doxyfile aproximation (the header files headers and
-little more).
-
-Re-organization of the header files to avoid forward declarations
-for the t_pt type (and probably more to come in the future).
-
 
 ################################################################################
 ################################################################################
@@ -41,8 +32,11 @@ for the t_pt type (and probably more to come in the future).
 ################################################################################
 ### TODO's #####################################################################
 
+* The render function pt_ui_render()
+* Adopt the same error strategy as minishell.
 * A timer thread that can be reset/cancelled/restarted from another
 thread (e.g. the midi listener
+* Change signal() for sigaction()
 * The midi messages treatment should be more robust for the
 state machine of the interpreter does not remain in an unrecoveranle
 state if a message with a number of data bytes different than 2
@@ -81,6 +75,48 @@ Documentation updated.
 
 ################################################################################
 #### OLD COMMIT DESCRIPTIONS ###################################################
+
+ADD terminal capabilities features
+
+User interface experiments just to play with the following functions
+(that I need in another project):
+	From unistd.h or C standard library"
+		isatty
+		ttyname
+		tcsetattr
+		tcgetattr
+		ttyslot
+		ioctl
+	From termcap library:
+		tgetent
+		tgetflag
+		tgetnum
+		tgetstr
+		tgoto
+		tputs
+
+Controlled initialization and termination of the user's interface.
+The ECHO capabilities of the terminal is disabled on init.
+All three standard terminal-related file descriptors are checked
+and the program only launches if all of them are a tty.
+The original configuration of the terminal is restored on termination.
+The screen is cleared in the beginning and before terminating the
+program.
+
+First doxyfile aproximation (the header files headers and
+little more).
+
+Re-organization of the header files to avoid forward declarations
+for the t_pt type (and probably more to come in the future).
+
+
+
+
+
+
+
+
+
 
 Refactorized, multithread, working note training
 

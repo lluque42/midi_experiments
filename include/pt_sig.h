@@ -1,29 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pt_ui.h                                            :+:      :+:    :+:   */
+/*   pt_sig.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lluque <lluque@student.42malaga.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 11:02:02 by lluque            #+#    #+#             */
-/*   Updated: 2025/06/14 21:37:42 by lluque           ###   ########.fr       */
+/*   Updated: 2025/06/13 23:05:14 by lluque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /**
- * @file pt_ui.h
+ * @file pt_sig.h
  * TODO.
  */
 
-#ifndef PT_UI_H
-# define PT_UI_H
+#ifndef PT_SIG_H
+# define PT_SIG_H
 
 # include "piano_trainer.h"
 
-int				pt_ui_init(t_pt *pt);
+int	pt_sig_init(void);
 
-int				pt_ui_check_if_tty(void);
-
-int 			pt_ui_terminate(t_pt *pt);
+void	pt_sig_hndlr(int signal);
 
 #endif

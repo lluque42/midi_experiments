@@ -6,7 +6,7 @@
 #    By: lluque <lluque@student.42malaga.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/15 11:23:07 by lluque            #+#    #+#              #
-#    Updated: 2025/06/12 11:56:15 by lluque           ###   ########.fr        #
+#    Updated: 2025/06/15 11:14:23 by lluque           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,7 +60,7 @@ LIBFT_BIN = $(LIBFT_BIN_DIR)libft.a
 # Additional external (already-compiled) libraries for linking to the
 # project's binaries (mandatory, bonus and tester).
 # 
-EXT_LIBS = -ltermcap
+EXT_LIBS = -ltermcap -lm
 
 ################################################################################
 #
@@ -164,6 +164,9 @@ INCLUDES = $(INC_DIR)piano_trainer.h \
 		   $(INC_DIR)pt_files.h \
 		   $(INC_DIR)pt_midi.h \
 		   $(INC_DIR)pt_ui.h \
+		   $(INC_DIR)pt_timer.h \
+		   $(INC_DIR)pt_sig.h \
+		   $(INC_DIR)pt_ascii_art.h \
 
 
 # List of source code file names with path relative to SRC_DIR
@@ -173,7 +176,22 @@ SOURCES = main.c \
 		  files/pt_files_get_midi_dev_file.c \
 		  files/pt_files_try_dir_items.c \
 		  midi/pt_midi_listener.c \
+		  midi/pt_midi_try_connect.c \
 		  ui/pt_ui_init.c \
+		  ui/pt_ui_terminate.c \
+		  ui/pt_ui_check_if_tty.c \
+		  timer/pt_tmr_create.c \
+		  timer/pt_tmr_counter.c \
+		  timer/pt_tmr_start.c \
+		  timer/pt_tmr_disable.c \
+		  signal/pt_sig_init.c \
+		  signal/pt_sig_hndlr.c \
+		  art/pt_art_load_art.c \
+		  art/pt_art_get_art_size.c \
+		  art/pt_art_print_dump.c \
+
+# Where all terminal experiments code come to die
+# ui/pt_ui_experiments.c \
 
 # List of bonus version header file names
 # NOTE: Only to be used to force recompiling if modified

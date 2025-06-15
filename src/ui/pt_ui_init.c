@@ -6,87 +6,11 @@
 /*   By: lluque <lluque@student.42malaga.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 10:59:58 by lluque            #+#    #+#             */
-/*   Updated: 2025/06/13 17:55:57 by lluque           ###   ########.fr       */
+/*   Updated: 2025/06/14 20:14:48 by lluque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "piano_trainer.h"
-
-int pt_isatty_test(int fd)
-{
-	struct termios termios_p;
-
-	if (tcgetattr(fd, &termios_p) != 0)
-		return (0);
-	printf("\ttermios_p.c_iflag & IGNBRK = '%d'\n", termios_p.c_iflag & IGNBRK);
-	printf("\ttermios_p.c_iflag & BRKINT = '%d'\n", termios_p.c_iflag & BRKINT);
-	printf("\ttermios_p.c_iflag & = INLCR '%d'\n", termios_p.c_iflag & INLCR);
-	printf("\ttermios_p.c_iflag & = IGNCR '%d'\n", termios_p.c_iflag & IGNCR);
-	printf("\ttermios_p.c_iflag & = ICRNL '%d'\n", termios_p.c_iflag & ICRNL);
-	printf("\ttermios_p.c_iflag & = IUCLC '%d'\n", termios_p.c_iflag & IUCLC);
-	printf("\ttermios_p.c_iflag & = IUTF8 '%d'\n", termios_p.c_iflag & IUTF8);
-
-	printf("\ttermios_p.c_oflag & = OCRNL '%d'\n", termios_p.c_oflag & OCRNL);
-	printf("\ttermios_p.c_oflag & = ONOCR '%d'\n", termios_p.c_oflag & ONOCR);
-	printf("\ttermios_p.c_oflag & = ONLRET '%d'\n", termios_p.c_oflag & ONLRET);
-
-	printf("\ttermios_p.c_lflag & ISIG = '%d'\n", termios_p.c_lflag & ISIG);
-	printf("\ttermios_p.c_lflag & = ECHO '%d'\n", termios_p.c_lflag & ECHO);
-
-	// Setting: oring
-	//termios_p.c_lflag = termios_p.c_lflag | ECHO;
-	// Resetting: anding the inverted 
-	//termios_p.c_lflag = termios_p.c_lflag & ~ECHO;
-
-	// Setting: oring
-//	termios_p.c_lflag = termios_p.c_lflag | ISIG;
-	// Resetting: anding the inverted 
-//	termios_p.c_lflag = termios_p.c_lflag & ~ISIG;
-	//if (tcsetattr(fd, TCSANOW, &termios_p) != 0)
-	//	return (0);
-
-//	printf("\tThe echo has been disabled\n");
-//	printf("\tThe signals from terminal inputs have been disabled\n");
-
-
-	struct winsize ws;
-
-    // STDOUT_FILENO is typically the terminal
-    if (ioctl(STDOUT_FILENO, TIOCGWINSZ, &ws) == -1) {
-        perror("ioctl for terminal size");
-        return 1;
-    }
-
-    printf("Rows: %d\n", ws.ws_row);
-    printf("Columns: %d\n", ws.ws_col);
-
-
-	printf("\tTerminal slot (?): '%d'\n", ttyslot());
-
-	printf("\tTerminal name (before isatty): '%s'\n", ttyname(fd));
-	if (isatty(fd))
-		printf("It is a terminal!!!\n");
-	else
-	{
-		if (errno == ENOTTY)
-			printf("NOT a terminal\n");
-		else if (errno == EBADF)
-			printf("Bad fd\n");
-		else
-			printf("VERY UNEXPECTED\n");
-		return (0);
-	}
-	printf("\tTerminal name (AFTER isatty): '%s'\n", ttyname(fd));
-	return (1);
-}
-
-int	pt_ui_check_if_tty(void)
-{
-	if (!isatty(STDERR_FILENO) || !isatty(STDOUT_FILENO)
-			|| !isatty(STDIN_FILENO))
-		return (0);
-	return (1);
-}
 
 int	pt_ui_init(t_pt *pt)
 {
@@ -97,6 +21,26 @@ int	pt_ui_init(t_pt *pt)
 	if (!pt_ui_check_if_tty())
 		return (dprintf(STDERR_FILENO, "No redirections/piping allowed. "),
 				dprintf(STDERR_FILENO, "This is an interactive program.\n"), 0);
+
+	// Initialize winsize
+	// (1) ioctl() is the most low-level and less portable way to
+	// interact with a terminal. Just for simple low-level stuff:
+	// Input modes, echo, signals, baud rate, etc.
+	// It uses Kernel-level or OS interface (ioctl() is a system call).
+	pthread_mutex_lock(&pt->ws_mx);
+	if (ioctl(STDOUT_FILENO, TIOCGWINSZ, &pt->ws) == -1)
+		return (pthread_mutex_unlock(&pt->ws_mx),
+				perror("ioctl for terminal size"), 0);
+	pthread_mutex_unlock(&pt->ws_mx);
+	
+	// Retrieve and backup original termios struct for eventual restoring.
+	// Disable the terminal echo during the execution
+	// (2) tcgetattr()/tcsetattr() using the termios struct is a just a tiny
+	// little bit less low-level and more portable way to interact with a
+	// terminal. But don't fool yourself, It's still just for simple
+	// low-level stuff: Input modes, echo, signals, baud rate, etc.
+	// It also uses Kernel-level or OS interface (tcgetattr()/tcsetattr()
+	// are system call and termios is a kernel structure).
 	if (tcgetattr(STDOUT_FILENO, &pt->termios_orig) != 0)
 		return (perror("Couldn't tcgetattr()."), 0);
 	new_termios = pt->termios_orig;
@@ -109,6 +53,8 @@ int	pt_ui_init(t_pt *pt)
 	new_termios.c_lflag &= ~ECHO;
 	if (tcsetattr(STDOUT_FILENO, TCSANOW, &new_termios) != 0)
 		return (perror("Couldn't tcsetattr()."), 0);
+
+	// Obtain the terminal type to use with termcap
 	tmp = getenv("TERM");
 	if (tmp == NULL)
 	{
@@ -119,12 +65,25 @@ int	pt_ui_init(t_pt *pt)
 	}
 	else
 		pt->env_termtype = strdup(tmp);
-
-	printf("Ah? '%s'\n", pt->env_termtype);
 	
+	// Initialize access to the termcap database based on the terminal type
+	// (3) Termcap library is the highest level way to interact with the
+	// terminal. It uses user-space database access (instead of system calls)
+	// like /etc/termcap. It controls different things, called capabiilities,
+	// of a higher level nature, such as: Cursor movement, screen clear,
+	// key mapping. Its API include: tgetent(), tgetstr(), tgetnum(),
+	// tgetflag(), tputs(), tgoto()...
+	//
+	// IMPORTANT: Apparently termcap is kind of obsolete. For example, in my
+	// Ubuntu its role is assumed by 'ncurses' which presents a compatibility
+	// layer interface for termcap. So, this program 'thinks' it's talking
+	// to termcap but it's actually talking to 'ncurses'. This has important
+	// consequences such as the memory management that is NOT implemented by
+	// ncurses in the way described by termcap manual. There are no memory
+	// leaks but a lot of memory allocated by termcap/ncurses stays reachable
+	// by-design to be dealt with by the OS when the program using said library
+	// terminates.
 	status = tgetent (NULL, pt->env_termtype);	// won't free shit
-	if (!pt->env_termtype || !*pt->env_termtype)
-
 	if (status < 0)
 		return (pt_ui_terminate(pt),
 				perror("Couldn't tgetent(), no access"), 0);
@@ -132,43 +91,7 @@ int	pt_ui_init(t_pt *pt)
 		return (pt_ui_terminate(pt),
 				perror("Couldn't tgetent(), TERM not defined"), 0);
 
-	// Instead of NULL one could malloc a char* and pass its address (char**)
-	// and free it before leaving. Probably won't work with ncurses...
-	printf("%s", tgetstr("cl", NULL));
-	printf("cm_string '%s'\n", tgetstr("cm", NULL));
-	
-	printf("Columns according to termcap '%d'\n", tgetnum("co"));
-	printf("Lines according to termcap '%d'\n", tgetnum("li"));
-
-	printf("Autowrap? '%d'\n", tgetflag("am"));
-
-
-	
-	return (1);
-}
-/*
-	int	some_file_fd;
-
-	if (pt == NULL)
-		return (0);
-	printf("dev file case (%d):\n", pt->dev_fd);
-	pt_isatty_test(pt->dev_fd);
-	printf("stdin case:\n");
-	pt_isatty_test(STDIN_FILENO);
-	some_file_fd = open("README.md", O_RDONLY);
-	printf("some file case (fd = %d):\n", some_file_fd);
-	pt_isatty_test(some_file_fd);
-	printf("bad fd case:\n");
-	pt_isatty_test(43);
-	return (1);
-*/
-
-int	pt_ui_terminate(t_pt *pt)
-{
-	if (tcsetattr(STDOUT_FILENO, TCSANOW, &pt->termios_orig) != 0)
-		return (0);
-	// This call makes termcap to free 
-	//status = tgetent (NULL, pt->env_termtype);	// won't free shit
-	printf("%s", tgetstr("cl", NULL));
+	// Clear the screen using "cl" terminal capability obtained from termcap
+	//printf("%s", tgetstr("cl", NULL));
 	return (1);
 }
