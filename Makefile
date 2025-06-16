@@ -6,7 +6,7 @@
 #    By: lluque <lluque@student.42malaga.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/15 11:23:07 by lluque            #+#    #+#              #
-#    Updated: 2025/06/16 00:27:02 by lluque           ###   ########.fr        #
+#    Updated: 2025/06/16 01:17:04 by lluque           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -180,6 +180,8 @@ SOURCES = main.c \
 		  files/pt_files_try_dir_items.c \
 		  midi/pt_midi_listener.c \
 		  midi/pt_midi_try_connect.c \
+		  midi/pt_midi_create_midi.c \
+		  midi/pt_midi_destroy_midi.c \
 		  ui/pt_ui_init.c \
 		  ui/pt_ui_terminate.c \
 		  ui/pt_ui_check_if_tty.c \
@@ -198,6 +200,8 @@ SOURCES = main.c \
 		  art/pt_art_destroy_art.c \
 		  games/pt_gm_get_rand_nbr.c \
 		  games/guess_note/pt_gm_guess_note.c \
+		  games/guess_note/pt_gn_create_gn.c \
+		  games/guess_note/pt_gn_destroy_gn.c \
 		  music/pt_mu_note_print.c \
 		  music/pt_mu_create_note_from_midi.c \
 

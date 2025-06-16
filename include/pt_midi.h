@@ -6,7 +6,7 @@
 /*   By: lluque <lluque@student.42malaga.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 20:20:48 by lluque            #+#    #+#             */
-/*   Updated: 2025/06/13 22:27:42 by lluque           ###   ########.fr       */
+/*   Updated: 2025/06/16 01:06:44 by lluque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,38 @@ convention. The MIDI standard only says that the note number 60 is a C,
 it does not say of which octave.
 */
 
-void	*pt_midi_listener(void *pt_control_struct);
+/**
+ * @struct s_pt_midi
+ * @brief Base for typedef <b>t_pt_midi</b>.
+ * @details
+ * TODO.
+ *
+ * @var s_pt_midi::midi_dev_file
+ * The path to the midi character device file if found.
+ *
+ * @var s_pt_midi::dev_fd
+ * The file descriptor to the midi character device file.
+ *
+ * @var s_pt_midi::listener_thread
+ * The MIDI listener thread.
+ */
+typedef struct s_pt_midi
+{
+	char					*dev_file;
+	int						dev_fd;
+	pthread_t				listener_thread;
+}	t_pt_midi;
+/**
+ * @typedef t_pt_midi
+ * @brief Based on the @link s_pt_midi @endlink struct.
+ */
 
-int		pt_midi_try_connect(t_pt *pt);
+t_pt_midi	*pt_midi_create_midi(void);
+
+void		pt_midi_destroy_midi(t_pt_midi *midi);
+
+void		*pt_midi_listener(void *pt_control_struct);
+
+int			pt_midi_try_connect(t_pt *pt);
 
 #endif

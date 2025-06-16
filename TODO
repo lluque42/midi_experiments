@@ -1,18 +1,17 @@
 ################################################################################
 #### FOR NEXT COMMIT DESCRIPTION ###############################################
 
-FIX Refactorization & clean-up. Music collection
+FIX Refactorization, better encapsulation
 
-Improved the mutex protection for the screen.
-More refactorization and cleaning.
-Memory leaks fixed.
+New stuctures were created for midi and the guess_note game to store
+members previously located in the main pt struct. Creator and
+destroyer functions were written for this new structs and the ones
+for pt were modified accordingly.
 
-A music collection was added to group everything to do with notation
-interval calculations, etc. It's kind of a library for basic universal
-music theory stuff.
+Slowly improving the old midi, but not yet re-designed. It almost
+works as I wanted, but it's not written as I want it.
 
-
-
+Lot's of known leaks (I just wanted to play a little).
 
 
 
@@ -41,6 +40,8 @@ functions I need for another project:
 ################################################################################
 ### TODO's #####################################################################
 
+* Either make ticks smaller or trigger re-rendering from midi changes.
+* The disable timer, ^C is getting harder
 * Re-design the midi listener so that each game registers its handlers
 for note_on, note_off, etc.
 * The render function pt_ui_render()
@@ -61,6 +62,7 @@ is received.
 ################################################################################
 ### DONE TODO's ################################################################
 
+* Move out of pt everything related to midi and the game.
 * Destroy art type, include in pt destroyer
 * Use O_NONBLOCK for the device file.
 * The midi interface for at least note on and off messages.
@@ -87,6 +89,26 @@ Documentation updated.
 
 ################################################################################
 #### OLD COMMIT DESCRIPTIONS ###################################################
+
+FIX Refactorization & clean-up. Music collection
+
+Improved the mutex protection for the screen.
+More refactorization and cleaning.
+Memory leaks fixed.
+
+A music collection was added to group everything to do with notation
+interval calculations, etc. It's kind of a library for basic universal
+music theory stuff.
+
+
+
+
+
+
+
+
+
+
 
 ADD Windows resize detection
 

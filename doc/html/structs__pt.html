@@ -80,53 +80,76 @@ $(function() {
  <a href="structs__pt.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="pt__type_8h_source.html">pt_type.h</a>&gt;</code></p>
+<div class="dynheader">
+Collaboration diagram for s_pt:</div>
+<div class="dyncontent">
+<div class="center"><img src="structs__pt__coll__graph.png" border="0" usemap="#as__pt_coll__map" alt="Collaboration graph"/></div>
+<map name="as__pt_coll__map" id="as__pt_coll__map">
+<area shape="rect" title="Base for typedef t_pt." alt="" coords="126,255,175,280"/>
+<area shape="rect" href="structs__pt__midi.html" title="Base for typedef t_pt_midi." alt="" coords="5,108,91,133"/>
+<area shape="poly" title=" " alt="" coords="62,145,84,186,114,229,138,253,134,256,110,232,80,188,57,147"/>
+<area shape="rect" href="structs__pt__gn.html" title="Base for typedef t_pt_gn." alt="" coords="115,108,187,133"/>
+<area shape="poly" title=" " alt="" coords="153,147,153,254,148,254,148,147"/>
+<area shape="rect" href="structs__note.html" title="Base for typedef t_note." alt="" coords="65,5,130,31"/>
+<area shape="poly" title=" " alt="" coords="92,44,91,64,96,83,107,96,122,106,119,110,103,100,91,85,85,64,87,43"/>
+<area shape="rect" href="structs__tmr.html" title="Base for typedef t_tmr." alt="" coords="173,5,232,31"/>
+<area shape="poly" title=" " alt="" coords="195,45,176,85,161,109,156,106,171,83,190,42"/>
+<area shape="rect" href="structs__pt__ascii__art.html" title="Base for typedef t_pt_ascii_art." alt="" coords="211,108,322,133"/>
+<area shape="poly" title=" " alt="" coords="251,146,162,256,158,253,247,143"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Data Fields</h2></td></tr>
-<tr class="memitem:a9496833c1b9d0a3c549b97445b93432c" id="r_a9496833c1b9d0a3c549b97445b93432c"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structs__pt.html#a9496833c1b9d0a3c549b97445b93432c">midi_dev_file</a></td></tr>
-<tr class="separator:a9496833c1b9d0a3c549b97445b93432c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a98a0bb388ef564aaeff336535c8ec808" id="r_a98a0bb388ef564aaeff336535c8ec808"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structs__pt.html#a98a0bb388ef564aaeff336535c8ec808">dev_fd</a></td></tr>
-<tr class="separator:a98a0bb388ef564aaeff336535c8ec808"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a99f2a8e4b60d4fbf10729148adf73f44" id="r_a99f2a8e4b60d4fbf10729148adf73f44"><td class="memItemLeft" align="right" valign="top">pthread_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structs__pt.html#a99f2a8e4b60d4fbf10729148adf73f44">listener_thread</a></td></tr>
-<tr class="separator:a99f2a8e4b60d4fbf10729148adf73f44"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2d64c84bb37a293a27d88ce2013955fc" id="r_a2d64c84bb37a293a27d88ce2013955fc"><td class="memItemLeft" align="right" valign="top"><a id="a2d64c84bb37a293a27d88ce2013955fc" name="a2d64c84bb37a293a27d88ce2013955fc"></a>
+struct <a class="el" href="structs__pt__midi.html">s_pt_midi</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>midi</b></td></tr>
+<tr class="separator:a2d64c84bb37a293a27d88ce2013955fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa63595f21d493faff021a8e4d65f1a00" id="r_aa63595f21d493faff021a8e4d65f1a00"><td class="memItemLeft" align="right" valign="top"><a id="aa63595f21d493faff021a8e4d65f1a00" name="aa63595f21d493faff021a8e4d65f1a00"></a>
+struct <a class="el" href="structs__pt__gn.html">s_pt_gn</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>gn</b></td></tr>
+<tr class="separator:aa63595f21d493faff021a8e4d65f1a00"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0aaeed9f6287b458f07b3e8cf934f67a" id="r_a0aaeed9f6287b458f07b3e8cf934f67a"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structs__pt.html#a0aaeed9f6287b458f07b3e8cf934f67a">seed</a></td></tr>
 <tr class="separator:a0aaeed9f6287b458f07b3e8cf934f67a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0bb1f6ec4304d2f679eb6273daf76976" id="r_a0bb1f6ec4304d2f679eb6273daf76976"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structs__pt.html#a0bb1f6ec4304d2f679eb6273daf76976">exit_pending</a></td></tr>
 <tr class="separator:a0bb1f6ec4304d2f679eb6273daf76976"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4ca645baeae0335d25546938be9218f6" id="r_a4ca645baeae0335d25546938be9218f6"><td class="memItemLeft" align="right" valign="top">pthread_mutex_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structs__pt.html#a4ca645baeae0335d25546938be9218f6">flags_mx</a></td></tr>
 <tr class="separator:a4ca645baeae0335d25546938be9218f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0d5903b3691e38fa67ca5c8299d2328b" id="r_a0d5903b3691e38fa67ca5c8299d2328b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structs__pt.html#a0d5903b3691e38fa67ca5c8299d2328b">last_note</a></td></tr>
-<tr class="separator:a0d5903b3691e38fa67ca5c8299d2328b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9fed3d704c362857f41dd9d27ee79aab" id="r_a9fed3d704c362857f41dd9d27ee79aab"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structs__pt.html#a9fed3d704c362857f41dd9d27ee79aab">last_octave</a></td></tr>
-<tr class="separator:a9fed3d704c362857f41dd9d27ee79aab"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7e2b6acf83852dcd45bf89bb2f1307f0" id="r_a7e2b6acf83852dcd45bf89bb2f1307f0"><td class="memItemLeft" align="right" valign="top">pthread_mutex_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structs__pt.html#a7e2b6acf83852dcd45bf89bb2f1307f0">note_mx</a></td></tr>
-<tr class="separator:a7e2b6acf83852dcd45bf89bb2f1307f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac83b6a5b4260af0df9debaee054e099c" id="r_ac83b6a5b4260af0df9debaee054e099c"><td class="memItemLeft" align="right" valign="top">struct termios&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structs__pt.html#ac83b6a5b4260af0df9debaee054e099c">termios_orig</a></td></tr>
 <tr class="separator:ac83b6a5b4260af0df9debaee054e099c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeb5bdc11d1161413404e5c9df3cb9672" id="r_aeb5bdc11d1161413404e5c9df3cb9672"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structs__pt.html#aeb5bdc11d1161413404e5c9df3cb9672">env_termtype</a></td></tr>
 <tr class="separator:aeb5bdc11d1161413404e5c9df3cb9672"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a08bacb7b4b603610411da7e1c39fb163" id="r_a08bacb7b4b603610411da7e1c39fb163"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structs__pt.html#a08bacb7b4b603610411da7e1c39fb163">term_buffer</a> [2048]</td></tr>
-<tr class="separator:a08bacb7b4b603610411da7e1c39fb163"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7b2c6039d6f05a2fc7f1a4499c5a74dc" id="r_a7b2c6039d6f05a2fc7f1a4499c5a74dc"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structs__pt.html#a7b2c6039d6f05a2fc7f1a4499c5a74dc">term_buffer</a></td></tr>
+<tr class="separator:a7b2c6039d6f05a2fc7f1a4499c5a74dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac7e67d131197b0bedcbae89822e3dbd3" id="r_ac7e67d131197b0bedcbae89822e3dbd3"><td class="memItemLeft" align="right" valign="top"><a id="ac7e67d131197b0bedcbae89822e3dbd3" name="ac7e67d131197b0bedcbae89822e3dbd3"></a>
+struct winsize&#160;</td><td class="memItemRight" valign="bottom"><b>min_ws</b></td></tr>
+<tr class="separator:ac7e67d131197b0bedcbae89822e3dbd3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a0aba6ba2b7e44c36cfda52386bff0e" id="r_a6a0aba6ba2b7e44c36cfda52386bff0e"><td class="memItemLeft" align="right" valign="top">struct winsize&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structs__pt.html#a6a0aba6ba2b7e44c36cfda52386bff0e">ws</a></td></tr>
+<tr class="separator:a6a0aba6ba2b7e44c36cfda52386bff0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3e7ef0af597e5d9a81d42454d8b1bbf4" id="r_a3e7ef0af597e5d9a81d42454d8b1bbf4"><td class="memItemLeft" align="right" valign="top"><a id="a3e7ef0af597e5d9a81d42454d8b1bbf4" name="a3e7ef0af597e5d9a81d42454d8b1bbf4"></a>
+pthread_mutex_t&#160;</td><td class="memItemRight" valign="bottom"><b>ws_mx</b></td></tr>
+<tr class="separator:a3e7ef0af597e5d9a81d42454d8b1bbf4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5dbba43897abd633d9aba564bbe9ec40" id="r_a5dbba43897abd633d9aba564bbe9ec40"><td class="memItemLeft" align="right" valign="top"><a id="a5dbba43897abd633d9aba564bbe9ec40" name="a5dbba43897abd633d9aba564bbe9ec40"></a>
+pthread_mutex_t&#160;</td><td class="memItemRight" valign="bottom"><b>screen_mx</b></td></tr>
+<tr class="separator:a5dbba43897abd633d9aba564bbe9ec40"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a88b3d5d7927f74fafa81f852a7c1075e" id="r_a88b3d5d7927f74fafa81f852a7c1075e"><td class="memItemLeft" align="right" valign="top"><a id="a88b3d5d7927f74fafa81f852a7c1075e" name="a88b3d5d7927f74fafa81f852a7c1075e"></a>
+struct <a class="el" href="structs__pt__ascii__art.html">s_pt_ascii_art</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>logo</b></td></tr>
+<tr class="separator:a88b3d5d7927f74fafa81f852a7c1075e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a619cdfee4869eb7b9bcda1350705e5ab" id="r_a619cdfee4869eb7b9bcda1350705e5ab"><td class="memItemLeft" align="right" valign="top"><a id="a619cdfee4869eb7b9bcda1350705e5ab" name="a619cdfee4869eb7b9bcda1350705e5ab"></a>
+struct <a class="el" href="structs__pt__ascii__art.html">s_pt_ascii_art</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>alts</b></td></tr>
+<tr class="separator:a619cdfee4869eb7b9bcda1350705e5ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa3121349f2bd547b304026c2d6355772" id="r_aa3121349f2bd547b304026c2d6355772"><td class="memItemLeft" align="right" valign="top"><a id="aa3121349f2bd547b304026c2d6355772" name="aa3121349f2bd547b304026c2d6355772"></a>
+struct <a class="el" href="structs__pt__ascii__art.html">s_pt_ascii_art</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>lat_notes</b></td></tr>
+<tr class="separator:aa3121349f2bd547b304026c2d6355772"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae0d64f1eeca483f853bda34ae7509fae" id="r_ae0d64f1eeca483f853bda34ae7509fae"><td class="memItemLeft" align="right" valign="top"><a id="ae0d64f1eeca483f853bda34ae7509fae" name="ae0d64f1eeca483f853bda34ae7509fae"></a>
+struct <a class="el" href="structs__pt__ascii__art.html">s_pt_ascii_art</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>ang_notes</b></td></tr>
+<tr class="separator:ae0d64f1eeca483f853bda34ae7509fae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a033a6eb0fb75625c32e6c79617225b5a" id="r_a033a6eb0fb75625c32e6c79617225b5a"><td class="memItemLeft" align="right" valign="top"><a id="a033a6eb0fb75625c32e6c79617225b5a" name="a033a6eb0fb75625c32e6c79617225b5a"></a>
+struct <a class="el" href="structs__pt__ascii__art.html">s_pt_ascii_art</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>numbers</b></td></tr>
+<tr class="separator:a033a6eb0fb75625c32e6c79617225b5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Base for typedef <b>t_pt</b>. </p>
 <p>TODO. </p>
 </div><h2 class="groupheader">Field Documentation</h2>
-<a id="a98a0bb388ef564aaeff336535c8ec808" name="a98a0bb388ef564aaeff336535c8ec808"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a98a0bb388ef564aaeff336535c8ec808">&#9670;&#160;</a></span>dev_fd</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">s_pt::dev_fd</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>The file descriptor to the midi character device file. </p>
-
-</div>
-</div>
 <a id="aeb5bdc11d1161413404e5c9df3cb9672" name="aeb5bdc11d1161413404e5c9df3cb9672"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aeb5bdc11d1161413404e5c9df3cb9672">&#9670;&#160;</a></span>env_termtype</h2>
 
@@ -172,81 +195,6 @@ Data Fields</h2></td></tr>
 
 </div>
 </div>
-<a id="a0d5903b3691e38fa67ca5c8299d2328b" name="a0d5903b3691e38fa67ca5c8299d2328b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0d5903b3691e38fa67ca5c8299d2328b">&#9670;&#160;</a></span>last_note</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">s_pt::last_note</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>TODO. </p>
-
-</div>
-</div>
-<a id="a9fed3d704c362857f41dd9d27ee79aab" name="a9fed3d704c362857f41dd9d27ee79aab"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9fed3d704c362857f41dd9d27ee79aab">&#9670;&#160;</a></span>last_octave</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">s_pt::last_octave</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>TODO. </p>
-
-</div>
-</div>
-<a id="a99f2a8e4b60d4fbf10729148adf73f44" name="a99f2a8e4b60d4fbf10729148adf73f44"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a99f2a8e4b60d4fbf10729148adf73f44">&#9670;&#160;</a></span>listener_thread</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">s_pt::listener_thread</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>The MIDI listener thread. </p>
-
-</div>
-</div>
-<a id="a9496833c1b9d0a3c549b97445b93432c" name="a9496833c1b9d0a3c549b97445b93432c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9496833c1b9d0a3c549b97445b93432c">&#9670;&#160;</a></span>midi_dev_file</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">s_pt::midi_dev_file</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>The path to the midi character device file if found. </p>
-
-</div>
-</div>
-<a id="a7e2b6acf83852dcd45bf89bb2f1307f0" name="a7e2b6acf83852dcd45bf89bb2f1307f0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7e2b6acf83852dcd45bf89bb2f1307f0">&#9670;&#160;</a></span>note_mx</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">s_pt::note_mx</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>TODO. </p>
-
-</div>
-</div>
 <a id="a0aaeed9f6287b458f07b3e8cf934f67a" name="a0aaeed9f6287b458f07b3e8cf934f67a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a0aaeed9f6287b458f07b3e8cf934f67a">&#9670;&#160;</a></span>seed</h2>
 
@@ -262,8 +210,8 @@ Data Fields</h2></td></tr>
 
 </div>
 </div>
-<a id="a08bacb7b4b603610411da7e1c39fb163" name="a08bacb7b4b603610411da7e1c39fb163"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a08bacb7b4b603610411da7e1c39fb163">&#9670;&#160;</a></span>term_buffer</h2>
+<a id="a7b2c6039d6f05a2fc7f1a4499c5a74dc" name="a7b2c6039d6f05a2fc7f1a4499c5a74dc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7b2c6039d6f05a2fc7f1a4499c5a74dc">&#9670;&#160;</a></span>term_buffer</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -289,6 +237,21 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>The tcgetattr()/tcsetattr() termios struct with the original unchanged terminal configurations to be restored when the program exits. </p>
+
+</div>
+</div>
+<a id="a6a0aba6ba2b7e44c36cfda52386bff0e" name="a6a0aba6ba2b7e44c36cfda52386bff0e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6a0aba6ba2b7e44c36cfda52386bff0e">&#9670;&#160;</a></span>ws</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">s_pt::ws</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Termios (ioctl) winsize initialized at startup and updated on SIGWINCH signal. </p>
 
 </div>
 </div>

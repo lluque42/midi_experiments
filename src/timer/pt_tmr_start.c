@@ -6,7 +6,7 @@
 /*   By: lluque <lluque@student.42malaga.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 20:13:31 by lluque            #+#    #+#             */
-/*   Updated: 2025/06/13 22:06:38 by lluque           ###   ########.fr       */
+/*   Updated: 2025/06/16 01:41:20 by lluque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 int	pt_tmr_start(t_tmr *tmr, t_tmr_block block)
 {
+	if (tmr == NULL)
+		return (0);
 	if (pthread_create(&tmr->counter_thread, NULL, &pt_tmr_counter, tmr))
 		return (perror("launching tmr counter thread"), 0);
 	if (pthread_detach(tmr->counter_thread) != 0)

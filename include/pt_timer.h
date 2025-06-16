@@ -6,7 +6,7 @@
 /*   By: lluque <lluque@student.42malaga.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 11:02:02 by lluque            #+#    #+#             */
-/*   Updated: 2025/06/13 22:05:19 by lluque           ###   ########.fr       */
+/*   Updated: 2025/06/16 02:17:06 by lluque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,6 @@ int		pt_tmr_start(t_tmr *tmr, t_tmr_block block);
 
 void	pt_tmr_disable(t_tmr *tmr);
 
-int		pt_timer_destroy(t_tmr   *tmr);
+int		pt_timer_destroy(t_tmr *tmr);
 
 #endif

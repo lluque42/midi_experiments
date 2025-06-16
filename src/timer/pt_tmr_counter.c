@@ -6,7 +6,7 @@
 /*   By: lluque <lluque@student.42malaga.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 19:20:51 by lluque            #+#    #+#             */
-/*   Updated: 2025/06/13 22:11:49 by lluque           ###   ########.fr       */
+/*   Updated: 2025/06/16 01:49:03 by lluque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	*pt_tmr_counter(void *tmr_arg)
 	while (count < max)
 	{
 		usleep(1000 * tmr->tick);
+		// check for pt->exit_pending? 
 		pthread_mutex_lock(&tmr->disabled_mx);
 		if (!tmr->disabled)
 		{

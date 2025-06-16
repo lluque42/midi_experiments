@@ -90,7 +90,7 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">/*   By: lluque &lt;lluque@student.42malaga.com&gt;       +#+  +:+       +#+        */</span></div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">/*                                                +#+#+#+#+#+   +#+           */</span></div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">/*   Created: 2025/06/10 20:20:48 by lluque            #+#    #+#             */</span></div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">/*   Updated: 2025/06/13 12:58:35 by lluque           ###   ########.fr       */</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">/*   Updated: 2025/06/15 22:00:53 by lluque           ###   ########.fr       */</span></div>
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">/*                                                                            */</span></div>
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">/* ************************************************************************** */</span></div>
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
@@ -112,15 +112,27 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="preprocessor"># include &lt;termcap.h&gt;</span>   <span class="comment">// UI terminal related functions</span></div>
 <div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="preprocessor"># include &lt;termios.h&gt;</span>   <span class="comment">// UI terminal related functions</span></div>
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="preprocessor"># include &lt;sys/ioctl.h&gt;</span> <span class="comment">// UI terminal related functions ioctl()</span></div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="preprocessor"># include &quot;<a class="code" href="pt__type_8h.html">pt_type.h</a>&quot;</span></div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="preprocessor"># include &quot;<a class="code" href="pt__files_8h.html">pt_files.h</a>&quot;</span></div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="preprocessor"># include &quot;<a class="code" href="pt__midi_8h.html">pt_midi.h</a>&quot;</span></div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="preprocessor"># include &quot;<a class="code" href="pt__ui_8h.html">pt_ui.h</a>&quot;</span></div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="preprocessor"># include &quot;libft.h&quot;</span></div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="preprocessor"># include &lt;math.h&gt;</span>      <span class="comment">// ceil()</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="preprocessor"># include &lt;stdarg.h&gt;</span>    <span class="comment">// variadic functions</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="preprocessor"># include &quot;<a class="code" href="pt__type_8h.html">pt_type.h</a>&quot;</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="preprocessor"># include &quot;<a class="code" href="pt__music_8h.html">pt_music.h</a>&quot;</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="preprocessor"># include &quot;<a class="code" href="pt__files_8h.html">pt_files.h</a>&quot;</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="preprocessor"># include &quot;<a class="code" href="pt__midi_8h.html">pt_midi.h</a>&quot;</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="preprocessor"># include &quot;<a class="code" href="pt__ui_8h.html">pt_ui.h</a>&quot;</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="preprocessor"># include &quot;<a class="code" href="pt__timer_8h.html">pt_timer.h</a>&quot;</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="preprocessor"># include &quot;<a class="code" href="pt__sig_8h.html">pt_sig.h</a>&quot;</span></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="preprocessor"># include &quot;<a class="code" href="pt__ascii__art_8h.html">pt_ascii_art.h</a>&quot;</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="preprocessor"># include &quot;<a class="code" href="pt__games_8h.html">pt_games.h</a>&quot;</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="preprocessor"># include &quot;libft.h&quot;</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="apt__ascii__art_8h_html"><div class="ttname"><a href="pt__ascii__art_8h.html">pt_ascii_art.h</a></div></div>
 <div class="ttc" id="apt__files_8h_html"><div class="ttname"><a href="pt__files_8h.html">pt_files.h</a></div></div>
+<div class="ttc" id="apt__games_8h_html"><div class="ttname"><a href="pt__games_8h.html">pt_games.h</a></div></div>
 <div class="ttc" id="apt__midi_8h_html"><div class="ttname"><a href="pt__midi_8h.html">pt_midi.h</a></div></div>
+<div class="ttc" id="apt__music_8h_html"><div class="ttname"><a href="pt__music_8h.html">pt_music.h</a></div></div>
+<div class="ttc" id="apt__sig_8h_html"><div class="ttname"><a href="pt__sig_8h.html">pt_sig.h</a></div></div>
+<div class="ttc" id="apt__timer_8h_html"><div class="ttname"><a href="pt__timer_8h.html">pt_timer.h</a></div></div>
 <div class="ttc" id="apt__type_8h_html"><div class="ttname"><a href="pt__type_8h.html">pt_type.h</a></div></div>
 <div class="ttc" id="apt__ui_8h_html"><div class="ttname"><a href="pt__ui_8h.html">pt_ui.h</a></div></div>
 </div><!-- fragment --></div><!-- contents -->

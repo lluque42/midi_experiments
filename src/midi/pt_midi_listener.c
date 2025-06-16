@@ -6,7 +6,7 @@
 /*   By: lluque <lluque@student.42malaga.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 22:30:26 by lluque            #+#    #+#             */
-/*   Updated: 2025/06/11 22:56:13 by lluque           ###   ########.fr       */
+/*   Updated: 2025/06/16 01:19:34 by lluque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,11 @@ void	*pt_midi_listener(void *pt_control_struct)
 		if (pt->exit_pending)
 			return (pthread_mutex_unlock(&pt->flags_mx), NULL);
 		pthread_mutex_unlock(&pt->flags_mx);
-		bc = read(pt->dev_fd, &input_buffer, BUFFER_SIZE);
+		bc = read(pt->midi->dev_fd, &input_buffer, BUFFER_SIZE);
 		if (bc == -1)
 		{
 			if (errno != EWOULDBLOCK || errno != EAGAIN)
-				return (close(pt->dev_fd), perror("reading"), NULL);
+				return (close(pt->midi->dev_fd), perror("reading"), NULL);
 		}
 		if (bc == 0)
 			break ;
@@ -53,7 +53,7 @@ void	*pt_midi_listener(void *pt_control_struct)
 			if (state == MIDI_ST_IDLE)
 			{
 				if ((input_buffer[i] & 128) == 0)
-					return (close(pt->dev_fd), printf("unexpected data byte when expecting a status byte"), NULL);
+					return (close(pt->midi->dev_fd), printf("unexpected data byte when expecting a status byte"), NULL);
 				midi_status = input_buffer[i] & 0xf0;
 //				midi_channel = input_buffer[i] & 0xf;
 				if (midi_status == MIDI_TONE_OFF)
@@ -76,7 +76,7 @@ void	*pt_midi_listener(void *pt_control_struct)
 			if (state == MIDI_ST_STATUS && data_bytes_count <= data_bytes_expected)
 			{
 				if ((input_buffer[i] & 128) != 0)
-					return (close(pt->dev_fd), printf("unexpected status byte when expecting a data byte"), NULL);
+					return (close(pt->midi->dev_fd), printf("unexpected status byte when expecting a data byte"), NULL);
 				data_bytes_count++;
 //				printf("Data byte %d value = %d\n", data_bytes_count, input_buffer[i]);
 				if (midi_status == MIDI_TONE_OFF || midi_status == MIDI_TONE_ON)
@@ -84,13 +84,13 @@ void	*pt_midi_listener(void *pt_control_struct)
 					if (data_bytes_count == 1)
 					{
 //						midi_key = input_buffer[i];
-						pthread_mutex_lock(&pt->note_mx);
-						pt->last_note = input_buffer[i] % 12;
+						pthread_mutex_lock(&pt->gn->note_mx);
+						pt->gn->last_note = input_buffer[i] % 12;
 						// 60 is middle C, so it can vary. For my 88 keys
 						// keyboard, the middle C is in the 4th octave,
 						// so the key 60 is C4 (do4), this is why I substract 1.
-						pt->last_octave = input_buffer[i] / 12 - 1;
-						pthread_mutex_unlock(&pt->note_mx);
+						pt->gn->last_octave = input_buffer[i] / 12 - 1;
+						pthread_mutex_unlock(&pt->gn->note_mx);
 
 					}
 					else if (data_bytes_count == 2)

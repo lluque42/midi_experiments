@@ -6,7 +6,7 @@
 /*   By: lluque <lluque@student.42malaga.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 20:21:12 by lluque            #+#    #+#             */
-/*   Updated: 2025/06/15 23:22:19 by lluque           ###   ########.fr       */
+/*   Updated: 2025/06/16 02:09:22 by lluque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,29 @@
 
 void	pt_gn_render(t_pt *pt)
 {
-	printf("[render] Debug 1\n");
-	pthread_mutex_lock(&pt->screen_mx);
-	
-//	pt_art_print_in_columns(pt, pt->min_ws, 3,
-//							pt->gn->current_note_naming, rand_note,
-//							pt->alts, rand_alteration,
-//							pt->numbers, pt->gn->count);
-	pthread_mutex_unlock(&pt->screen_mx);
+	t_pt_ascii_art	*current_note_naming;
+
+	if (pt->gn->current_note_naming == MU_NN_LAT)
+		current_note_naming = pt->lat_notes;
+	else
+		current_note_naming = pt->ang_notes;
+
+	pt_ui_clear_screen(pt);
+
+	pt->gn->guess_note = pt_mu_create_note_from_midi(pt->gn->last_note);
+	pt_art_print_in_columns(pt, pt->min_ws, 5,
+							current_note_naming, pt->gn->rand_note,
+							pt->alts, pt->gn->rand_alteration,
+							pt->numbers, pt->gn->count,
+							current_note_naming, pt->gn->guess_note->pse_diaton,
+							pt->alts, pt->gn->guess_note->dia_alteration);
+//		pt_art_print_in_columns(pt, pt->min_ws, 2,
+//								current_note_naming, rand_note,
+//								pt->alts, rand_alteration);
 }
 
 void	tmr_tick_hndlr(void *pt_arg)
 {
-	return ;
 	t_pt	*pt;
 	printf("[tick] Debug 1\n");
 
@@ -37,7 +47,6 @@ void	tmr_tick_hndlr(void *pt_arg)
 
 void	tmr_done_hndlr(void *pt_arg)
 {
-	return ;
 	t_pt	*pt;
 	printf("[done] Debug 1\n");
 
@@ -47,15 +56,11 @@ void	tmr_done_hndlr(void *pt_arg)
 
 int	pt_gm_guess_note(t_pt *pt)
 {
-	int				rand_note;
-	int				rand_alteration;
-	int				rand_note_naming;
-	t_pt_ascii_art	*current_note_naming;
+//	int				rand_note;				// 0-11
+//	int				rand_alteration;		// flat or sharps
+//	int				rand_note_naming;		// lat or ang
 
 
-	pt->gn = calloc(sizeof(t_pt_gn), 1);
-	if (pt->gn == NULL)
-		return (perror("calloc'ing in guess note"), -1);
 
 
 /*
@@ -87,39 +92,40 @@ int	pt_gm_guess_note(t_pt *pt)
 			break ;
 		}
 		pthread_mutex_unlock(&pt->flags_mx);
-		rand_note = pt_gm_get_rand_nbr(6, &pt->seed);
-		rand_alteration = pt_gm_get_rand_nbr(3, &pt->seed);
-		rand_note_naming = pt_gm_get_rand_nbr(0, &pt->seed);
-		if (rand_note_naming)
-			current_note_naming = pt->ang_notes;
+		pt->gn->rand_note = pt_gm_get_rand_nbr(6, &pt->seed);
+		pt->gn->rand_alteration = pt_gm_get_rand_nbr(3, &pt->seed);
+		//pt->gn->rand_note_naming = pt_gm_get_rand_nbr(0, &pt->seed);
+		pt->gn->rand_note_naming = 1;
+		if (pt->gn->rand_note_naming)
+			pt->gn->current_note_naming = MU_NN_LAT;
 		else
-			current_note_naming = pt->lat_notes;
+			pt->gn->current_note_naming = MU_NN_ANG;
 	
 	
 		//clear the screen before each note
 		pt_ui_clear_screen(pt);
 		//printf("Try this note: %s\n", latin_notes_sharp[rand_note]);
 		
-		pt_art_print_in_columns(pt, pt->min_ws, 2,
-								current_note_naming, rand_note,
-								pt->alts, rand_alteration);
+//		pt_art_print_in_columns(pt, pt->min_ws, 2,
+//								current_note_naming, rand_note,
+//								pt->alts, rand_alteration);
 		printf("[pt_gm_guess_note] Debug 1\n");
 
 
 		pt->gn->count = 5;
-//		pt->question_tmr = pt_tmr_create(pt->gn->count * 1000, 1000,
-//									tmr_tick_hndlr, (void *)pt,
-//									tmr_done_hndlr, (void *)pt);
+		pt->gn->question_tmr = pt_tmr_create(pt->gn->count * 1000, 1000,
+									tmr_tick_hndlr, (void *)pt,
+									tmr_done_hndlr, (void *)pt);
 		printf("[pt_gm_guess_note] Debug 2\n");
-		if (pt->question_tmr == NULL)
+		if (pt->gn->question_tmr == NULL)
 			return (EXIT_FAILURE);//////////
-		pt_tmr_start(pt->question_tmr, TMR_BLOCK);
+		pt_tmr_start(pt->gn->question_tmr, TMR_BLOCK);
 
 
 
 
-		pthread_mutex_lock(&pt->note_mx);
-		if (pt->last_note == rand_note)
+		pthread_mutex_lock(&pt->gn->note_mx);
+		if (pt->gn->last_note == pt->gn->rand_note)
 		{
 			pthread_mutex_lock(&pt->screen_mx);
 			printf ("Well done!!!!\n");
@@ -135,8 +141,8 @@ int	pt_gm_guess_note(t_pt *pt)
 //		printf("You pressed: %s%d\n", latin_notes_sharp[pt->last_note],
 //				pt->last_octave);
 		pthread_mutex_unlock(&pt->screen_mx);
-		pt->last_note = 0;
-		pthread_mutex_unlock(&pt->note_mx);
+		pt->gn->last_note = 0;
+		pthread_mutex_unlock(&pt->gn->note_mx);
 	}
 	return (1);
 }

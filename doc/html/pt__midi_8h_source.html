@@ -90,7 +90,7 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">/*   By: lluque &lt;lluque@student.42malaga.com&gt;       +#+  +:+       +#+        */</span></div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">/*                                                +#+#+#+#+#+   +#+           */</span></div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">/*   Created: 2025/06/10 20:20:48 by lluque            #+#    #+#             */</span></div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">/*   Updated: 2025/06/12 11:31:45 by lluque           ###   ########.fr       */</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">/*   Updated: 2025/06/16 01:06:44 by lluque           ###   ########.fr       */</span></div>
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">/*                                                                            */</span></div>
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">/* ************************************************************************** */</span></div>
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
@@ -155,10 +155,29 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span><span class="comment">it does not say of which octave.</span></div>
 <div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span><span class="comment">*/</span></div>
 <div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span><span class="keywordtype">void</span>    *pt_midi_listener(<span class="keywordtype">void</span> *pt_control_struct);</div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span><span class="preprocessor">#endif</span></div>
+<div class="foldopen" id="foldopen00094" data-start="{" data-end="};">
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno"><a class="line" href="structs__pt__midi.html">   94</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_struct" href="structs__pt__midi.html">s_pt_midi</a></div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>{</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    <span class="keywordtype">char</span>                    *dev_file;</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno"><a class="line" href="structs__pt__midi.html#a9781d691672087b39b4ea60e67d952fc">   97</a></span>    <span class="keywordtype">int</span>                     <a class="code hl_variable" href="structs__pt__midi.html#a9781d691672087b39b4ea60e67d952fc">dev_fd</a>;</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno"><a class="line" href="structs__pt__midi.html#ac912f64cb75447e211037502140edc29">   98</a></span>    pthread_t               <a class="code hl_variable" href="structs__pt__midi.html#ac912f64cb75447e211037502140edc29">listener_thread</a>;</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno"><a class="line" href="pt__midi_8h.html#a69ca9cf11f6e0538ad2a017b28848849">   99</a></span>}   <a class="code hl_typedef" href="pt__midi_8h.html#a69ca9cf11f6e0538ad2a017b28848849">t_pt_midi</a>;</div>
+</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span><a class="code hl_struct" href="structs__pt__midi.html">t_pt_midi</a>   *pt_midi_create_midi(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span> </div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span><span class="keywordtype">void</span>        pt_midi_destroy_midi(<a class="code hl_struct" href="structs__pt__midi.html">t_pt_midi</a> *midi);</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span> </div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span><span class="keywordtype">void</span>        *pt_midi_listener(<span class="keywordtype">void</span> *pt_control_struct);</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span> </div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span><span class="keywordtype">int</span>         pt_midi_try_connect(<a class="code hl_struct" href="structs__pt.html">t_pt</a> *pt);</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span> </div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span><span class="preprocessor">#endif</span></div>
 <div class="ttc" id="apiano__trainer_8h_html"><div class="ttname"><a href="piano__trainer_8h.html">piano_trainer.h</a></div></div>
+<div class="ttc" id="apt__midi_8h_html_a69ca9cf11f6e0538ad2a017b28848849"><div class="ttname"><a href="pt__midi_8h.html#a69ca9cf11f6e0538ad2a017b28848849">t_pt_midi</a></div><div class="ttdeci">struct s_pt_midi t_pt_midi</div><div class="ttdoc">Based on the s_pt_midi struct.</div></div>
+<div class="ttc" id="astructs__pt__midi_html"><div class="ttname"><a href="structs__pt__midi.html">s_pt_midi</a></div><div class="ttdoc">Base for typedef t_pt_midi.</div><div class="ttdef"><b>Definition</b> pt_midi.h:95</div></div>
+<div class="ttc" id="astructs__pt__midi_html_a9781d691672087b39b4ea60e67d952fc"><div class="ttname"><a href="structs__pt__midi.html#a9781d691672087b39b4ea60e67d952fc">s_pt_midi::dev_fd</a></div><div class="ttdeci">int dev_fd</div><div class="ttdef"><b>Definition</b> pt_midi.h:97</div></div>
+<div class="ttc" id="astructs__pt__midi_html_ac912f64cb75447e211037502140edc29"><div class="ttname"><a href="structs__pt__midi.html#ac912f64cb75447e211037502140edc29">s_pt_midi::listener_thread</a></div><div class="ttdeci">pthread_t listener_thread</div><div class="ttdef"><b>Definition</b> pt_midi.h:98</div></div>
+<div class="ttc" id="astructs__pt_html"><div class="ttname"><a href="structs__pt.html">s_pt</a></div><div class="ttdoc">Base for typedef t_pt.</div><div class="ttdef"><b>Definition</b> pt_type.h:67</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

@@ -6,7 +6,7 @@
 /*   By: lluque <lluque@student.42malaga.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 11:14:27 by lluque            #+#    #+#             */
-/*   Updated: 2025/06/15 21:49:45 by lluque           ###   ########.fr       */
+/*   Updated: 2025/06/16 01:22:50 by lluque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,6 @@
  * @brief Base for typedef <b>t_pt</b>.
  * @details
  * TODO.
- *
- * @var s_pt::midi_dev_file
- * The path to the midi character device file if found.
- *
- * @var s_pt::dev_fd
- * The file descriptor to the midi character device file.
- *
- * @var s_pt::listener_thread
- * The MIDI listener thread.
  *
  * @var s_pt::seed
  * TODO.
@@ -74,15 +65,11 @@
  */
 typedef struct s_pt
 {
-	char					*midi_dev_file;
-	int						dev_fd;
-	pthread_t				listener_thread;
+	struct s_pt_midi		*midi;
+	struct s_pt_gn  		*gn;
 	unsigned int			seed;
 	int						exit_pending;
 	pthread_mutex_t			flags_mx;
-	int						last_note;
-	int						last_octave;
-	pthread_mutex_t			note_mx;
 	struct termios			termios_orig;
 	char					*env_termtype;
 	//char					term_buffer[2048];	// For UNIX, didn't free ok
@@ -91,13 +78,11 @@ typedef struct s_pt
 	struct winsize			ws;
 	pthread_mutex_t			ws_mx;
 	pthread_mutex_t			screen_mx;
-	struct s_tmr			*question_tmr;
 	struct s_pt_ascii_art	*logo;
 	struct s_pt_ascii_art	*alts;
 	struct s_pt_ascii_art	*lat_notes;
 	struct s_pt_ascii_art	*ang_notes;
 	struct s_pt_ascii_art	*numbers;
-	struct s_pt_gn  		*gn;
 }	t_pt;
 /**
  * @typedef t_pt
