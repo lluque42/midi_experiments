@@ -7,6 +7,8 @@ Luis Luque (luque.luis@gmail.com)
 (check out development branch, since this will be at first mostly
 experimenting and not so much anything worthy of production)
 
+<img src="guess_note_prototype.gif" alt="some version of the piano trainer">
+
 I don't know what this will end up being. Some things like MIDI messaging
 interpreting and may be rendering (into a piano keyboard image); arbitrary
 scales calculator; interval calculator; interactive circle of fifths;
