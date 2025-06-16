@@ -1,6 +1,27 @@
 ################################################################################
 #### FOR NEXT COMMIT DESCRIPTION ###############################################
 
+
+Fixed a memory leak when no midi device was found (wrong destruction
+order).
+
+Discarded unsupported midi messages, assuring well behavior if
+unknown midi messages arrive.
+
+The midi collecion was modified to a handler/hook based interface. In
+this way every game/excercise can register a handler to a midi message
+type (only tone on/off are supported but the designe is prett
+scalable. Default handlers for midi tone on/off events were added,
+they just print messages like:
+	"Channel '4' just pressed the 'do' (semitone 0 in octave)
+	in the '4' octave with '26' velocity"
+	"Channel '4' just released the 'do' (semitone 0 in octave)
+	in the '4' octave with '0' velocity
+
+
+
+
+
 FIX Refactorization, better encapsulation
 
 New stuctures were created for midi and the guess_note game to store
@@ -44,8 +65,10 @@ functions I need for another project:
 * The disable timer, ^C is getting harder
 * Re-design the midi listener so that each game registers its handlers
 for note_on, note_off, etc.
+* Make the UI also a handler/hook based interface?
 * The render function pt_ui_render()
-* Adopt the same error strategy as minishell.
+* Adopt the same error strategy as minishell. The midi listener needs
+this badly.
 * A timer thread that can be reset/cancelled/restarted from another
 thread (e.g. the midi listener
 * Change signal() for sigaction()

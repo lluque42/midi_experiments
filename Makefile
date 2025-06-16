@@ -6,7 +6,7 @@
 #    By: lluque <lluque@student.42malaga.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/15 11:23:07 by lluque            #+#    #+#              #
-#    Updated: 2025/06/16 01:17:04 by lluque           ###   ########.fr        #
+#    Updated: 2025/06/16 19:05:53 by lluque           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -182,6 +182,9 @@ SOURCES = main.c \
 		  midi/pt_midi_try_connect.c \
 		  midi/pt_midi_create_midi.c \
 		  midi/pt_midi_destroy_midi.c \
+		  midi/pt_midi_tone_on_off_default.c \
+		  midi/pt_midi_register_handler.c \
+		  midi/pt_midi_init.c \
 		  ui/pt_ui_init.c \
 		  ui/pt_ui_terminate.c \
 		  ui/pt_ui_check_if_tty.c \

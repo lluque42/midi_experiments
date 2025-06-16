@@ -6,7 +6,7 @@
 /*   By: lluque <lluque@student.42malaga.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 11:02:02 by lluque            #+#    #+#             */
-/*   Updated: 2025/06/15 22:52:04 by lluque           ###   ########.fr       */
+/*   Updated: 2025/06/16 18:53:17 by lluque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,4 +109,5 @@ typedef struct s_note
 void	pt_mu_note_print(t_pt *pt, t_note *note);
 
 t_note	*pt_mu_create_note_from_midi(int midi_key_value);
+
 #endif

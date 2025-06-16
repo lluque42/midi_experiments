@@ -6,7 +6,7 @@
 /*   By: lluque <lluque@student.42malaga.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 11:11:38 by lluque            #+#    #+#             */
-/*   Updated: 2025/06/16 00:34:37 by lluque           ###   ########.fr       */
+/*   Updated: 2025/06/16 13:52:15 by lluque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,6 @@ int	pt_art_print_in_columns(t_pt *pt, struct winsize max_size, int cols, ...)
 	line = 0;
 	while (line < max_rows)
 	{
-//		printf ("\tline %d\n", line);
 		col = 0;
 		while (col < cols)
 		{
@@ -85,7 +84,6 @@ int	pt_art_print_in_columns(t_pt *pt, struct winsize max_size, int cols, ...)
 		   	symbol_i_offset = symbol_offset * art_vindex[col];
 			pthread_mutex_lock(&pt->screen_mx);
 			write(STDIN_FILENO,
-					//art[col]->data + art[col]->size.ws_col * line,
 					art[col]->data + symbol_i_offset + line * art[col]->size.ws_col,
 					art[col]->size.ws_col);
 			i = 0;
