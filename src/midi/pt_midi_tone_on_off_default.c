@@ -6,7 +6,7 @@
 /*   By: lluque <lluque@student.42malaga.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 17:49:06 by lluque            #+#    #+#             */
-/*   Updated: 2025/06/16 19:44:20 by lluque           ###   ########.fr       */
+/*   Updated: 2025/06/16 22:47:08 by lluque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ void	pt_midi_tone_on_off_default(void *pt_arg, void *midi_data)
 	printf("the '%s%s' (semitone %d in octave) ",
 			note_name[note->pse_diaton], note_alt[note->dia_alteration],
 			note->chrom);
-	printf("in the '%d' octave with '%d' velocity\n",
-			note->octave, tone_msg.vel);
+	printf("in the '%d' octave with '%d' velocity. (midi note value = %d)\n",
+			note->octave, tone_msg.vel, tone_msg.key);
 	pthread_mutex_unlock(&pt->screen_mx);
 	free(note);
 }

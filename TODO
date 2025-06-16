@@ -2,37 +2,12 @@
 #### FOR NEXT COMMIT DESCRIPTION ###############################################
 
 
-Fixed a memory leak when no midi device was found (wrong destruction
-order).
 
-Discarded unsupported midi messages, assuring well behavior if
-unknown midi messages arrive.
-
-The midi collecion was modified to a handler/hook based interface. In
-this way every game/excercise can register a handler to a midi message
-type (only tone on/off are supported but the designe is prett
-scalable. Default handlers for midi tone on/off events were added,
-they just print messages like:
-	"Channel '4' just pressed the 'do' (semitone 0 in octave)
-	in the '4' octave with '26' velocity"
-	"Channel '4' just released the 'do' (semitone 0 in octave)
-	in the '4' octave with '0' velocity
-
-
-
-
-
-FIX Refactorization, better encapsulation
-
-New stuctures were created for midi and the guess_note game to store
-members previously located in the main pt struct. Creator and
-destroyer functions were written for this new structs and the ones
-for pt were modified accordingly.
-
-Slowly improving the old midi, but not yet re-designed. It almost
-works as I wanted, but it's not written as I want it.
-
-Lot's of known leaks (I just wanted to play a little).
+RESUME at pt_gm_get_rand_note.c and pt_gm_guess_note.c
+in the context of using the configuration settings of
+the game to: (1) Randomly pick a note within the parameters;
+(2) Render it according to the settings. Implement the states
+of the game.
 
 
 
@@ -61,6 +36,9 @@ functions I need for another project:
 ################################################################################
 ### TODO's #####################################################################
 
+* There are problems with the timer.
+* A function to enarmonize a note, to vary sharps and flats signs.
+* Refactor pt_art_print_in_columns
 * Either make ticks smaller or trigger re-rendering from midi changes.
 * The disable timer, ^C is getting harder
 * Re-design the midi listener so that each game registers its handlers
@@ -69,6 +47,9 @@ for note_on, note_off, etc.
 * The render function pt_ui_render()
 * Adopt the same error strategy as minishell. The midi listener needs
 this badly.
+* Config default values for guess note are hard-coded, move out gn_create.
+	* There's a config that, together with the midi 60, should be for
+	the midi device
 * A timer thread that can be reset/cancelled/restarted from another
 thread (e.g. the midi listener
 * Change signal() for sigaction()
@@ -112,6 +93,47 @@ Documentation updated.
 
 ################################################################################
 #### OLD COMMIT DESCRIPTIONS ###################################################
+
+
+
+Fixed a memory leak when no midi device was found (wrong destruction
+order).
+
+Discarded unsupported midi messages, assuring well behavior if
+unknown midi messages arrive.
+
+The midi collecion was modified to a handler/hook based interface. In
+this way every game/excercise can register a handler to a midi message
+type (only tone on/off are supported but the designe is prett
+scalable. Default handlers for midi tone on/off events were added,
+they just print messages like:
+	"Channel '4' just pressed the 'do' (semitone 0 in octave)
+	in the '4' octave with '26' velocity"
+	"Channel '4' just released the 'do' (semitone 0 in octave)
+	in the '4' octave with '0' velocity
+
+
+
+
+
+
+
+
+
+FIX Refactorization, better encapsulation
+
+New stuctures were created for midi and the guess_note game to store
+members previously located in the main pt struct. Creator and
+destroyer functions were written for this new structs and the ones
+for pt were modified accordingly.
+
+Slowly improving the old midi, but not yet re-designed. It almost
+works as I wanted, but it's not written as I want it.
+
+Lot's of known leaks (I just wanted to play a little).
+
+
+
 
 FIX Refactorization & clean-up. Music collection
 

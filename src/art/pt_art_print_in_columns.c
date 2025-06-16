@@ -6,7 +6,7 @@
 /*   By: lluque <lluque@student.42malaga.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 11:11:38 by lluque            #+#    #+#             */
-/*   Updated: 2025/06/16 13:52:15 by lluque           ###   ########.fr       */
+/*   Updated: 2025/06/16 23:05:41 by lluque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int	pt_art_print_in_columns(t_pt *pt, struct winsize max_size, int cols, ...)
 {
+//	printf("[pt_art_print_in_columns] Entering\n");
 	t_pt_ascii_art	**art;
 	int				*art_vindex;
 	va_list			args;
@@ -31,6 +32,7 @@ int	pt_art_print_in_columns(t_pt *pt, struct winsize max_size, int cols, ...)
 	i = 0;
 	acc_cols = 0;
 	max_rows = 0;
+//	printf("[pt_art_print_in_columns] Debug 1\n");
 	while (i < cols)
 	{
 		art[i] = va_arg(args, t_pt_ascii_art*);

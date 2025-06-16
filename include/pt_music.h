@@ -6,7 +6,7 @@
 /*   By: lluque <lluque@student.42malaga.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 11:02:02 by lluque            #+#    #+#             */
-/*   Updated: 2025/06/16 18:53:17 by lluque           ###   ########.fr       */
+/*   Updated: 2025/06/16 21:43:09 by lluque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,13 @@ typedef struct s_note
 
 void	pt_mu_note_print(t_pt *pt, t_note *note);
 
+// Midi key value (actually note value) is in the range: 0 to 127.
+// Must be freed with free().
 t_note	*pt_mu_create_note_from_midi(int midi_key_value);
+
+// Chrom refers to chromatic. Best word I thought for a number between
+// 0 and 11 which in a chromatic scale points to do-si (C-B)
+// Must be freed with free().
+t_note  *pt_mu_create_note_from_chrom(int chrom);
 
 #endif

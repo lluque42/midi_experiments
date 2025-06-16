@@ -6,7 +6,7 @@
 /*   By: lluque <lluque@student.42malaga.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 20:21:12 by lluque            #+#    #+#             */
-/*   Updated: 2025/06/16 02:09:22 by lluque           ###   ########.fr       */
+/*   Updated: 2025/06/16 23:29:29 by lluque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,23 +23,19 @@ void	pt_gn_render(t_pt *pt)
 
 	pt_ui_clear_screen(pt);
 
-	pt->gn->guess_note = pt_mu_create_note_from_midi(pt->gn->last_note);
 	pt_art_print_in_columns(pt, pt->min_ws, 5,
 							current_note_naming, pt->gn->rand_note,
 							pt->alts, pt->gn->rand_alteration,
 							pt->numbers, pt->gn->count,
 							current_note_naming, pt->gn->guess_note->pse_diaton,
 							pt->alts, pt->gn->guess_note->dia_alteration);
-//		pt_art_print_in_columns(pt, pt->min_ws, 2,
-//								current_note_naming, rand_note,
-//								pt->alts, rand_alteration);
 }
 
 void	tmr_tick_hndlr(void *pt_arg)
 {
 	t_pt	*pt;
 	printf("[tick] Debug 1\n");
-
+	// There was a disable somewhere that worked at least to prevent leaks.
 	pt = (t_pt *)pt_arg;
 	pt->gn->count--;
 	pt_gn_render(pt);
@@ -49,40 +45,41 @@ void	tmr_done_hndlr(void *pt_arg)
 {
 	t_pt	*pt;
 	printf("[done] Debug 1\n");
-
+	// There was a disable somewhere that worked at least to prevent leaks.
 	pt = (t_pt *)pt_arg;
 	pt_gn_render(pt);
 }
 
+void    pt_gn_tone_on_hndlr(void *pt_arg, void *midi_data)
+{
+	t_pt_midi_tone_msg	tone_msg;
+	t_note				*note;
+	t_pt				*pt;
+
+	pt = (t_pt *)pt_arg;
+	tone_msg = *((t_pt_midi_tone_msg *)midi_data);
+	note = pt_mu_create_note_from_midi(tone_msg.key);
+	pthread_mutex_lock(&pt->gn->note_mx);
+	free(pt->gn->guess_note);
+	pt->gn->guess_note = note;
+	pt_mu_note_print(pt, pt->gn->guess_note);
+	pthread_mutex_unlock(&pt->gn->note_mx);
+	pt_gn_render(pt);
+}
+
+void    pt_gn_tone_off_hndlr(void *pt_arg, void *midi_data)
+{
+	// Do nothing, warn nothing
+	if (pt_arg || midi_data)
+		return ;
+	return ;
+}
+
 int	pt_gm_guess_note(t_pt *pt)
 {
-//	int				rand_note;				// 0-11
-//	int				rand_alteration;		// flat or sharps
-//	int				rand_note_naming;		// lat or ang
+	pt_midi_register_handler(pt->midi, MIDI_TONE_OFF, pt_gn_tone_off_hndlr);
+	pt_midi_register_handler(pt->midi, MIDI_TONE_ON, pt_gn_tone_on_hndlr);
 
-
-
-
-/*
-
-//2212221 = 12 (major scale)
-
-
-	pt_art_print_in_columns(pt, pt->min_ws, 1,
-							pt->numbers, 1);
-	pt_art_print_in_columns(pt, pt->min_ws, 1,
-							pt->alts, 1);
-	pt_art_print_in_columns(pt, pt->min_ws, 1,
-							pt->lat_notes, 1);
-	pt_art_print_in_columns(pt, pt->min_ws, 1,
-							pt->ang_notes, 1);
-	pt_art_print_in_columns(pt, pt->min_ws, 4,
-							pt->numbers, 1,
-							pt->alts, 2,
-							pt->lat_notes, 3,
-							pt->ang_notes, 4);
-	pt_art_print_dump(pt, pt->alts);
-*/
 	while (1)
 	{
 		pthread_mutex_lock(&pt->flags_mx);
@@ -92,6 +89,9 @@ int	pt_gm_guess_note(t_pt *pt)
 			break ;
 		}
 		pthread_mutex_unlock(&pt->flags_mx);
+
+
+
 		pt->gn->rand_note = pt_gm_get_rand_nbr(6, &pt->seed);
 		pt->gn->rand_alteration = pt_gm_get_rand_nbr(3, &pt->seed);
 		//pt->gn->rand_note_naming = pt_gm_get_rand_nbr(0, &pt->seed);
@@ -102,14 +102,9 @@ int	pt_gm_guess_note(t_pt *pt)
 			pt->gn->current_note_naming = MU_NN_ANG;
 	
 	
-		//clear the screen before each note
-		pt_ui_clear_screen(pt);
-		//printf("Try this note: %s\n", latin_notes_sharp[rand_note]);
-		
-//		pt_art_print_in_columns(pt, pt->min_ws, 2,
-//								current_note_naming, rand_note,
-//								pt->alts, rand_alteration);
-		printf("[pt_gm_guess_note] Debug 1\n");
+
+		pt_gn_render(pt);
+
 
 
 		pt->gn->count = 5;

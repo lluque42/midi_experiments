@@ -6,7 +6,7 @@
 #    By: lluque <lluque@student.42malaga.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/15 11:23:07 by lluque            #+#    #+#              #
-#    Updated: 2025/06/16 19:05:53 by lluque           ###   ########.fr        #
+#    Updated: 2025/06/16 21:40:08 by lluque           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -207,6 +207,7 @@ SOURCES = main.c \
 		  games/guess_note/pt_gn_destroy_gn.c \
 		  music/pt_mu_note_print.c \
 		  music/pt_mu_create_note_from_midi.c \
+		  music/pt_mu_create_note_from_chrom.c \
 
 # Where all terminal experiments code come to die
 # ui/pt_ui_experiments.c \
