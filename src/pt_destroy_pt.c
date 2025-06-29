@@ -6,7 +6,7 @@
 /*   By: lluque <lluque@student.42malaga.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 21:55:42 by lluque            #+#    #+#             */
-/*   Updated: 2025/06/16 01:18:33 by lluque           ###   ########.fr       */
+/*   Updated: 2025/06/26 21:56:38 by lluque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,7 @@ void	pt_destroy_pt(t_pt *pt)
 	pt_art_destroy_art(pt->lat_notes);
 	pt_art_destroy_art(pt->ang_notes);
 	pt_art_destroy_art(pt->numbers);
+	pt_art_destroy_art(pt->q_mark);
+	pt_art_destroy_art(pt->blank);
 	free(pt);
 }

@@ -6,7 +6,7 @@
 /*   By: lluque <lluque@student.42malaga.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 11:11:38 by lluque            #+#    #+#             */
-/*   Updated: 2025/06/16 23:05:41 by lluque           ###   ########.fr       */
+/*   Updated: 2025/06/26 13:01:18 by lluque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	pt_art_print_in_columns(t_pt *pt, struct winsize max_size, int cols, ...)
 	int				acc_cols;
 	int				max_rows;
 
-	art = calloc(sizeof (t_pt_ascii_art*) * cols, 1);
+	art = calloc(sizeof (t_pt_ascii_art*), cols);
 	if (art == NULL)
 		return (perror("malloc'ing art columns"), 0);
 	art_vindex = malloc(sizeof (int) * max_size.ws_row);

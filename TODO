@@ -3,12 +3,35 @@
 
 
 
-RESUME at pt_gm_get_rand_note.c and pt_gm_guess_note.c
-in the context of using the configuration settings of
-the game to: (1) Randomly pick a note within the parameters;
-(2) Render it according to the settings. Implement the states
-of the game.
+A perfectly playable, not so customizaable yet, guess the note
+game/excercise.
 
+The guess the note game has its states well defined and implemented.
+Added a question mark ascii art file.
+Added a blank ascii art file.
+Fixed timer functions and their usage in guess note game. Added
+a pt_timer_destroy() function which joins to the counter_thread
+(not detached anymore) and checks first whether the pointer to
+the timer is NULL to prevent double frees.
+
+No known memory leaks or bugs.
+
+
+
+
+
+
+Guess the note:
+The game settings have impact at different points:
+	* When getting a random note:
+		* Whether or note it comes with or without alterations.
+	* When rendering:
+		* Note naming convention.
+		* Include octave.
+		* Include alteration.
+			* Possibility of becuadro for natural.
+	* When scoring:
+		* Include octave
 
 
 

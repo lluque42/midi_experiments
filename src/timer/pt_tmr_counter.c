@@ -6,7 +6,7 @@
 /*   By: lluque <lluque@student.42malaga.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 19:20:51 by lluque            #+#    #+#             */
-/*   Updated: 2025/06/16 01:49:03 by lluque           ###   ########.fr       */
+/*   Updated: 2025/06/26 21:43:03 by lluque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,18 @@ void	*pt_tmr_counter(void *tmr_arg)
 	int		max;
 
 	tmr = (t_tmr *)tmr_arg;
-	pthread_mutex_lock(&tmr->blocking_mx);
+	if (tmr->blocks == TMR_BLOCK)
+		pthread_mutex_lock(&tmr->blocking_mx);
 	count = 0;
 	max = ceil(((float)tmr->duration) / ((float)tmr->tick));
 	while (count < max)
 	{
 		usleep(1000 * tmr->tick);
-		// check for pt->exit_pending? 
 		pthread_mutex_lock(&tmr->disabled_mx);
 		if (!tmr->disabled)
 		{
-			tmr->tick_hndlr(tmr->tick_hndlr_arg);
 			pthread_mutex_unlock(&tmr->disabled_mx);
+			tmr->tick_hndlr(tmr->tick_hndlr_arg);
 		}
 		else
 		{
@@ -46,9 +46,12 @@ void	*pt_tmr_counter(void *tmr_arg)
 		tmr->done_hndlr(tmr->done_hndlr_arg);
 	}
 	else
+	{
 		pthread_mutex_unlock(&tmr->disabled_mx);
-
-	if (tmr->blocks)
+	}
+	if (tmr->blocks == TMR_BLOCK)
+	{
 		pthread_mutex_unlock(&tmr->blocking_mx);
+	}
 	return (NULL);
 }

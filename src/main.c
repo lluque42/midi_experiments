@@ -6,7 +6,7 @@
 /*   By: lluque <lluque@student.42malaga.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 20:21:57 by lluque            #+#    #+#             */
-/*   Updated: 2025/06/16 23:02:29 by lluque           ###   ########.fr       */
+/*   Updated: 2025/06/26 21:50:28 by lluque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,17 @@ int	main(int argc, char **argv)
 //	}
 	
 	sleep(3);
+	pthread_mutex_lock(&pt->flags_mx);
+	if (!pt->exit_pending)
+	{
+		pthread_mutex_unlock(&pt->flags_mx);
+		if (!pt_gm_guess_note(pt))
+			dprintf(STDERR_FILENO, "Couldn't load game\n");
+	}
+	else
+		pthread_mutex_unlock(&pt->flags_mx);
 	// May be a menu to select a game
 	// and to configure preferences 
-	if (!pt_gm_guess_note(pt))
-		dprintf(STDERR_FILENO, "Couldn't load game\n");
 
 	pthread_join(pt->midi->listener_thread, NULL);
 	close(pt->midi->dev_fd);

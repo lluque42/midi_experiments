@@ -6,7 +6,7 @@
 /*   By: lluque <lluque@student.42malaga.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 11:02:02 by lluque            #+#    #+#             */
-/*   Updated: 2025/06/16 22:43:26 by lluque           ###   ########.fr       */
+/*   Updated: 2025/06/26 22:07:02 by lluque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,20 @@ typedef enum e_gn_cf_alterations
 	GN_CF_ALTS_COUNT,
 }	t_gn_cf_alterations;
 
+typedef enum e_gn_st_state
+{
+	GN_ST_STARTING,
+	GN_ST_ASKING,
+	GN_ST_CHECKING,
+	GN_ST_SCORING,
+	GN_ST_DONE,
+}	t_gn_st_state;
+
+// Default values in pt_gn_create_gn.c (TODO move to a better place).
 typedef struct s_gn_cf
 {
 	int					timeout_ms;
+	int					tick_ms;
 	int					include_octave;
 	int					max_midi_note;
 	int					min_midi_note;
@@ -94,9 +105,12 @@ typedef struct s_gn_cf
 typedef struct s_pt_gn
 {
 	t_gn_cf			config;
+	t_gn_st_state	state;
+	t_note			*ask_note;
+	int				guess_result;
+
 	int				count;
 	t_note_naming	current_note_naming;
-	t_note			*ask_note;
 	t_note			*guess_note;
 	int				rand_note;
 	int				rand_alteration;
@@ -105,7 +119,7 @@ typedef struct s_pt_gn
 	int				last_octave;
 	pthread_mutex_t	note_mx;
 	struct s_tmr	*question_tmr;
-
+	
 }	t_pt_gn;
 /**
  * @typedef t_pt_gn
@@ -115,5 +129,17 @@ typedef struct s_pt_gn
 t_pt_gn	*pt_gn_create_gn(void);
 
 void	pt_gn_destroy_gn(t_pt_gn *gn);
+
+t_note	*pt_gm_get_rand_note(t_pt *pt);
+
+void	pt_gn_tmr_tick_hndlr(void *pt_arg);
+
+void	pt_gn_tmr_done_hndlr(void *pt_arg);
+
+void	pt_gn_render(t_pt *pt);
+
+void	pt_gn_tone_on_hndlr(void *pt_arg, void *midi_data);
+
+void	pt_gn_tone_off_hndlr(void *pt_arg, void *midi_data);
 
 #endif

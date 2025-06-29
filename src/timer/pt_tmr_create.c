@@ -6,7 +6,7 @@
 /*   By: lluque <lluque@student.42malaga.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 19:06:30 by lluque            #+#    #+#             */
-/*   Updated: 2025/06/13 20:17:09 by lluque           ###   ########.fr       */
+/*   Updated: 2025/06/26 21:12:02 by lluque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,6 @@ t_tmr	*pt_tmr_create(int duration, int tick,
 	tmr->tick_hndlr_arg = tick_hndlr_arg;
 	tmr->done_hndlr_arg = done_hndlr_arg;
 	pthread_mutex_init(&tmr->blocking_mx, NULL);
+	pthread_mutex_init(&tmr->disabled_mx, NULL);
 	return (tmr);
 }

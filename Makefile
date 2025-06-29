@@ -6,7 +6,7 @@
 #    By: lluque <lluque@student.42malaga.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/15 11:23:07 by lluque            #+#    #+#              #
-#    Updated: 2025/06/16 21:40:08 by lluque           ###   ########.fr        #
+#    Updated: 2025/06/26 22:08:56 by lluque           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -192,6 +192,7 @@ SOURCES = main.c \
 		  timer/pt_tmr_create.c \
 		  timer/pt_tmr_counter.c \
 		  timer/pt_tmr_start.c \
+		  timer/pt_tmr_destroy.c \
 		  timer/pt_tmr_disable.c \
 		  signal/pt_sig_init.c \
 		  signal/pt_sig_hndlr.c \
@@ -205,6 +206,10 @@ SOURCES = main.c \
 		  games/guess_note/pt_gm_guess_note.c \
 		  games/guess_note/pt_gn_create_gn.c \
 		  games/guess_note/pt_gn_destroy_gn.c \
+		  games/guess_note/pt_gm_get_rand_note.c \
+		  games/guess_note/pt_gn_tmr_hndlrs.c \
+		  games/guess_note/pt_gn_midi_hndlrs.c \
+		  games/guess_note/pt_gn_render.c \
 		  music/pt_mu_note_print.c \
 		  music/pt_mu_create_note_from_midi.c \
 		  music/pt_mu_create_note_from_chrom.c \

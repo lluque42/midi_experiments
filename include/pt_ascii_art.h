@@ -6,7 +6,7 @@
 /*   By: lluque <lluque@student.42malaga.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 13:29:27 by lluque            #+#    #+#             */
-/*   Updated: 2025/06/16 00:26:48 by lluque           ###   ########.fr       */
+/*   Updated: 2025/06/26 21:59:59 by lluque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@
 # define PT_ANG_NOTES_PATH "data/anglo_notes_w24_h10"
 # define PT_LAT_NOTES_PATH "data/latin_notes_w24_h10"
 # define PT_NUMBERS_PATH "data/numbers_w12_h10"
+# define PT_QMARK_PATH "data/question_mark_w24_h10"
+# define PT_BLANK_PATH "data/blank_w12_h10"
 
 /**
  * @struct s_pt_ascii_art
@@ -70,6 +72,7 @@ typedef struct s_pt_ascii_art
  * @brief Based on the @link s_pt_ascii_art @endlink struct.
  */
 
+// Reads from file and initializes the art struct with the data read
 t_pt_ascii_art	*pt_art_load_art(char *path, int ver_el, int hor_el);
 
 struct winsize	pt_art_get_art_size(char *path);

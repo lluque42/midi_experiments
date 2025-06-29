@@ -6,7 +6,7 @@
 /*   By: lluque <lluque@student.42malaga.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 11:14:27 by lluque            #+#    #+#             */
-/*   Updated: 2025/06/16 01:22:50 by lluque           ###   ########.fr       */
+/*   Updated: 2025/06/26 21:56:23 by lluque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,8 @@ typedef struct s_pt
 	struct s_pt_ascii_art	*lat_notes;
 	struct s_pt_ascii_art	*ang_notes;
 	struct s_pt_ascii_art	*numbers;
+	struct s_pt_ascii_art	*q_mark;
+	struct s_pt_ascii_art	*blank;
 }	t_pt;
 /**
  * @typedef t_pt
