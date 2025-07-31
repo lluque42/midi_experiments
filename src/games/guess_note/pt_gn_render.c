@@ -6,7 +6,7 @@
 /*   By: lluque <lluque@student.42malaga.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 22:08:13 by lluque            #+#    #+#             */
-/*   Updated: 2025/06/26 22:08:27 by lluque           ###   ########.fr       */
+/*   Updated: 2025/07/26 10:41:00 by lluque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,10 @@ void	pt_gn_render(t_pt *pt)
 	write(STDOUT_FILENO, header, strlen(header));
 	pthread_mutex_unlock(&pt->screen_mx);
 
+	// BUG! Segfault when piano key is pressed during second 0
+	//printf("[pt_gn_render] pt->alts=%p pt->gn->ask_note->dia_alteration=%d\n", pt->alts, pt->gn->ask_note->dia_alteration);
+	printf("[pt_gn_render] pt->alts=%p\n", pt->alts);
+	printf("[pt_gn_render] pt->gn->ask_note->dia_alteration=%d\n", pt->gn->ask_note->dia_alteration);
 	if (pt->gn->guess_note != NULL)
 	{
 		pt_art_print_in_columns(pt, pt->min_ws, 5,

@@ -1,10 +1,11 @@
 ################################################################################
 #### FOR NEXT COMMIT DESCRIPTION ###############################################
 
+ADD Playable guess the note (not much customization)
 
-
-A perfectly playable, not so customizaable yet, guess the note
-game/excercise.
+A perfectly playable, not so customizable yet, guess the note
+game/excercise. Random flat/sharp alterations using latin note naming
+convention, no octave checking, no "becuadro" symbol used.
 
 The guess the note game has its states well defined and implemented.
 Added a question mark ascii art file.
@@ -59,6 +60,7 @@ functions I need for another project:
 ################################################################################
 ### TODO's #####################################################################
 
+* PENDING BUG: When a key is pressed on second 0.
 * There are problems with the timer.
 * A function to enarmonize a note, to vary sharps and flats signs.
 * Refactor pt_art_print_in_columns
